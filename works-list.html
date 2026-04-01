@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>📚 作品一覧 — 夜霧流るる</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F6FF;
+    --card: #FFFFFF;
+    --accent: #A8C4F0;
+    --accent2: #E8A0BF;
+    --accent3: #C4A8E0;
+    --text: #4A4458;
+    --text-light: #8E849E;
+    --text-dark: #2E2440;
+    --border: #E8E0F0;
+    --shadow: 0 2px 20px rgba(74, 68, 88, 0.08);
+    --shadow-hover: 0 8px 30px rgba(74, 68, 88, 0.15);
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background-color: #F8F6FF; color-scheme: light only; }
+  body { font-family: 'Zen Maru Gothic', 'Klee One', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+
+.page-header { text-align: center; padding: 50px 20px 40px; background: linear-gradient(135deg, #C8DDFB 0%, #E8C0D8 40%, #D0C0E8 100%); position: relative; }
+.page-header h1 { font-family: 'Klee One', serif; font-size: clamp(22px, 5vw, 30px); font-weight: 600; color: var(--text-dark); margin-bottom: 4px; }
+.page-header p { font-size: 13px; color: var(--text); opacity: 0.7; }
+.back-link { position: absolute; top: 16px; left: 16px; text-decoration: none; font-size: 13px; color: var(--text); opacity: 0.7; transition: opacity 0.2s; }
+.back-link:hover { opacity: 1; }
+.header-wave { position: absolute; bottom: -2px; left: 0; width: 100%; height: 30px; background: var(--bg); clip-path: ellipse(55% 100% at 50% 100%); }
+
+.container { max-width: 720px; margin: 0 auto; padding: 20px 16px 60px; }
+.section { margin-bottom: 40px; }
+.section-title { font-family: 'Klee One', serif; font-size: 18px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; padding-bottom: 8px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.section-desc { font-size: 13px; color: var(--text-light); margin-bottom: 16px; line-height: 1.6; }
+.sub-heading { font-family: 'Klee One', serif; font-size: 14px; font-weight: 600; color: var(--accent3); margin: 24px 0 12px; padding-left: 4px; }
+.section-divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 40px 0; }
+
+.work-detail { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; transition: all 0.3s; opacity: 0; transform: translateY(20px); animation: fadeIn 0.5s ease forwards; scroll-margin-top: 16px; }
+.work-detail:hover { box-shadow: var(--shadow-hover); }
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+.work-detail-cover { padding: 20px 20px 12px; position: relative; min-height: 70px; display: flex; flex-direction: column; justify-content: flex-end; }
+.gc1 { background: linear-gradient(135deg, #A8C4F0 0%, #D8A0C8 50%, #C0A8E0 100%); }
+.gc2 { background: linear-gradient(135deg, #C0A8E0 0%, #A8C4F0 50%, #E0B0C8 100%); }
+.gc3 { background: linear-gradient(135deg, #E0B0C8 0%, #C0A8E0 50%, #A8D0F0 100%); }
+.gc4 { background: linear-gradient(135deg, #A8D0F0 0%, #C0A8E0 50%, #E0B0C8 100%); }
+.gc5 { background: linear-gradient(135deg, #C8B8E0 0%, #E0A8C0 50%, #A8C0E8 100%); }
+
+.work-detail-labels { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
+.d-label { font-size: 9px; font-weight: 700; padding: 1px 8px; border-radius: 100px; backdrop-filter: blur(4px); }
+.dl-complete { background: rgba(255,255,255,0.85); color: #2E7D32; }
+.dl-ongoing { background: rgba(255,255,255,0.85); color: #1565C0; }
+.dl-long { background: rgba(255,255,255,0.7); color: #546E7A; }
+.dl-mid { background: rgba(255,255,255,0.7); color: #546E7A; }
+.dl-short { background: rgba(255,255,255,0.7); color: #7B1FA2; }
+.dl-volume { background: rgba(255,255,255,0.7); color: #546E7A; }
+.dl-r18 { background: rgba(255,100,100,0.8); color: white; }
+.dl-all { background: rgba(255,255,255,0.85); color: #00838F; }
+.dl-paid { background: rgba(255,215,0,0.9); color: #5D4037; }
+.dl-badge { background: rgba(255,215,0,0.9); color: #5D4037; }
+.dl-selling { background: rgba(255,180,200,0.85); color: #AD1457; }
+.dl-preparing { background: rgba(255,183,77,0.85); color: #E65100; }
+
+.work-detail-title { font-family: 'Klee One', serif; font-size: 15px; font-weight: 700; color: white; text-shadow: 0 1px 8px rgba(0,0,0,0.4); line-height: 1.4; }
+
+.work-detail-body { padding: 14px 20px 18px; }
+.work-coupling { font-size: 13px; color: var(--accent2); font-weight: 700; margin-bottom: 4px; }
+.work-tag { font-size: 12px; color: var(--accent3); font-weight: 500; margin-bottom: 8px; }
+.work-synopsis-full { font-size: 13px; color: var(--text); line-height: 1.8; margin-bottom: 14px; padding: 10px 14px; background: #FAF8FF; border-radius: 10px; border: 1px solid var(--border); }
+
+.work-platforms { margin-bottom: 10px; }
+.work-read-btn { display: inline-block; text-decoration: none; padding: 9px 24px; border-radius: 100px; font-size: 13px; font-weight: 700; color: white; background: linear-gradient(135deg, var(--accent), var(--accent3)); box-shadow: 0 3px 12px rgba(168,196,240,0.4); transition: all 0.3s; margin-bottom: 10px; }
+.work-read-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(168,196,240,0.5); }
+.work-also-on { font-size: 11px; color: var(--text-light); margin-bottom: 4px; }
+.platform-link { text-decoration: none; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 100px; transition: all 0.2s; margin-right: 4px; }
+.pl-moon { background: #FCE4EC; color: #C62828; }
+.pl-moon:hover { background: #C62828; color: white; }
+.pl-pixiv { background: #E3F2FD; color: #1565C0; }
+.pl-pixiv:hover { background: #1565C0; color: white; }
+.pl-dlsite { background: #FFF3E0; color: #E65100; }
+.pl-dlsite:hover { background: #E65100; color: white; }
+.pl-fanza { background: #FCE4EC; color: #AD1457; }
+.pl-fanza:hover { background: #AD1457; color: white; }
+.pl-narou { background: #E8F5E9; color: #2E7D32; }
+.pl-narou:hover { background: #2E7D32; color: white; }
+
+.work-extras { display: flex; gap: 6px; flex-wrap: wrap; }
+.work-date { font-size: 11px; color: var(--text-light); margin-top: 8px; }
+.extra-link { text-decoration: none; font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 100px; transition: all 0.2s; }
+.link-playlist { background: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2; }
+.link-playlist:hover { background: #E65100; color: white; }
+.link-afterword { background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; }
+.link-afterword:hover { background: #2E7D32; color: white; }
+
+footer { text-align: center; padding: 30px 20px; font-size: 12px; color: var(--text-light); border-top: 1px solid var(--border); }
+footer a { color: var(--accent2); text-decoration: none; }
+
+/* ===== HAMBURGER MENU ===== */
+.menu-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 12px rgba(74, 68, 88, 0.1);
+}
+.menu-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(74, 68, 88, 0.15);
+}
+.menu-btn.open {
+  background: var(--text-dark);
+  border-color: var(--text-dark);
+}
+.menu-btn-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 18px;
+  transition: all 0.3s;
+}
+.menu-btn-icon span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--text-dark);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.menu-btn.open .menu-btn-icon span { background: white; }
+.menu-btn.open .menu-btn-icon span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+.menu-btn.open .menu-btn-icon span:nth-child(2) { opacity: 0; }
+.menu-btn.open .menu-btn-icon span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(248, 246, 255, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.menu-content {
+  text-align: center;
+  transform: translateY(15px);
+  transition: transform 0.35s ease;
+}
+.menu-overlay.open .menu-content {
+  transform: translateY(0);
+}
+.menu-site-name {
+  font-family: 'Klee One', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 28px;
+}
+.menu-group {
+  margin-bottom: 24px;
+}
+.menu-group-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-light);
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.menu-link {
+  display: block;
+  text-decoration: none;
+  font-family: 'Klee One', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  padding: 10px 0;
+  transition: color 0.2s;
+}
+.menu-link:hover { color: var(--accent2); }
+.menu-link-sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-light);
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+.menu-external {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.menu-ext-link {
+  text-decoration: none;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  transition: all 0.2s;
+}
+.menu-ext-link:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+</style>
+
+</head>
+<body>
+<!-- MENU -->
+<button class="menu-btn" onclick="toggleMenu()" aria-label="メニュー">
+  <div class="menu-btn-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</button>
+
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenuOnBg(event)">
+  <div class="menu-content">
+    <div class="menu-site-name">🪐 夜霧流るる</div>
+
+    <div class="menu-group">
+      <div class="menu-group-label">ページ</div>
+      <a href="site-top.html" class="menu-link" onclick="toggleMenu()">🏠 トップ</a>
+      <a href="guide.html" class="menu-link" onclick="toggleMenu()">🔰 はじめての方へ</a>
+      <a href="works-list.html" class="menu-link" onclick="toggleMenu()">📚 作品一覧</a>
+      <span class="menu-link" style="opacity: 0.5; cursor: default;">🌏 世界観と読む順番（準備中）</span>
+      <a href="about.html" class="menu-link" onclick="toggleMenu()">🎃 作者について</a>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-label">リンク</div>
+      <div class="menu-external">
+        <a href="https://bsky.app/profile/ngrryr.bsky.social" class="menu-ext-link" target="_blank">🦋 Bluesky</a>
+        <a href="https://xmypage.syosetu.com/x4534bv/" class="menu-ext-link" target="_blank">🌙 ムーンライトノベルズ</a>
+        <a href="https://www.pixiv.net/users/20023895" class="menu-ext-link" target="_blank">🎨 pixiv</a>
+        <span class="menu-ext-link" style="opacity: 0.5; cursor: default;">🛒 DLsite（準備中）</span>
+        <a href="https://note.com/clean_otter176" class="menu-ext-link" target="_blank">📝 note</a>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <a href="site-top.html#contact" class="menu-link" onclick="toggleMenu()">📬 感想・メッセージ <span class="menu-link-sub">匿名OK</span></a>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleMenu() {
+  document.querySelector(".menu-btn").classList.toggle("open");
+  document.getElementById("menuOverlay").classList.toggle("open");
+  document.body.style.overflow = document.getElementById("menuOverlay").classList.contains("open") ? "hidden" : "";
+}
+function closeMenuOnBg(e) {
+  if (e.target === document.getElementById("menuOverlay")) toggleMenu();
+}
+</script>
+
+
+<header class="page-header">
+  <a href="site-top.html" class="back-link">← トップへ戻る</a>
+  <h1>📚 作品一覧</h1>
+  <p>全作品をまとめています</p>
+  <div class="header-wave"></div>
+</header>
+
+<div class="container">
+
+  <!-- ========== 現代シリーズ ========== -->
+
+  <div class="section">
+    <div class="section-title">🍰 現代シリーズ</div>
+
+<div class="sub-heading">🌟 メインシリーズ（世界観共通）</div>
+<!-- <div class="section-desc">同じ世界観のお話です。どの作品から読んでも楽しめます。</div> -->
+
+<div class="work-detail" id="kusoshunin">
+  <div class="work-detail-cover gc1">
+    <div class="work-detail-labels">
+      <span class="d-label dl-badge">⭐ 代表作</span>
+      <span class="d-label dl-complete">完結</span>
+      <span class="d-label dl-long">長編</span>
+      <span class="d-label dl-r18">R18</span>
+      <span class="d-label dl-volume">全30万文字</span>
+    </div>
+    <div class="work-detail-title">【クソ主任に鎖。】SMマチアプでマゾ男を呼び出したら、大嫌いなパワハラ上司が現れた話</div>
+  </div>
+  <div class="work-detail-body">
+    <div class="work-coupling">🍒 部下（飼い主女）× 上司（番犬男）</div>
+    <div class="work-tag">#主従関係</div>
+    <div class="work-synopsis-full">パワハラにストレスを溜めた久慈宮は、男を虐めてストレスを晴らそうと、SMマチアプに手を出した。待ち合わせ場所に現れたのは、久慈宮にパワハラをしている藍原主任、本人で――。憂さ晴らしから始まる少し変わったオフィスラブです。</div>
+    <div class="work-platforms">
+      <a href="https://novel18.syosetu.com/n9554lh/" class="work-read-btn" target="_blank">📖 この作品を読む</a>
+    </div>
+    <div class="work-extras">
+      <a href="https://music.youtube.com/playlist?list=PLGefxGcsfa7MOAWtGDQIB7CF1ZSNCJwcY&si=LTA-2SZQqXj3ISRo" class="extra-link link-playlist" target="_blank">🎵 イメージソング</a>
+      <a href="https://note.com/clean_otter176/n/n6b1c2a1a27bd" class="extra-link link-afterword" target="_blank">📝 あとがき</a>
+    </div>
+    <div class="work-date">掲載 2026/03</div>
+  </div>
+</div>
+
+<div class="sub-heading">🌙 別世界のお話</div>
+
+<div class="work-detail" id="himaol">
+  <div class="work-detail-cover gc2">
+    <div class="work-detail-labels">
+      <span class="d-label dl-complete">完結</span>
+      <span class="d-label dl-short">短編</span>
+      <span class="d-label dl-r18">R18</span>
+      <span class="d-label dl-volume">全1.4万文字</span>
+    </div>
+    <div class="work-detail-title">年始休みで暇なOLが隣に住んでいる男子大学生を美味しく頂いちゃう話。</div>
+  </div>
+  <div class="work-detail-body">
+    <div class="work-coupling">🍒 暇な社畜OL×可哀想な男子大学生</div>
+    <div class="work-tag">#ペット扱い</div>
+    <div class="work-synopsis-full">タイトル通り。甘々（？）です。</div>
+    <div class="work-platforms">
+      <a href="https://novel18.syosetu.com/n7872jy/" class="work-read-btn" target="_blank">📖 この作品を読む</a>
+      <div class="work-also-on">こちらにも掲載：</div>
+      <a href="https://www.pixiv.net/novel/show.php?id=23777053" class="platform-link pl-pixiv" target="_blank">🎨 pixiv</a>
+    </div>
+    <div class="work-date">掲載 2025/01</div>
+  </div>
+</div>
+
+<div class="work-detail" id="namaiki">
+  <div class="work-detail-cover gc3">
+    <div class="work-detail-labels">
+      <span class="d-label dl-complete">完結</span>
+      <span class="d-label dl-short">短編</span>
+      <span class="d-label dl-all">全年齢</span>
+      <span class="d-label dl-volume">全0.6万文字</span>
+    </div>
+    <div class="work-detail-title">生意気金持ち男の弱みを握って掃除させる話。</div>
+  </div>
+  <div class="work-detail-body">
+    <div class="work-coupling">🍒 たくましい貧乏JK×傲慢DK</div>
+    <div class="work-tag">#下剋上</div>
+    <div class="work-synopsis-full">タイトル通り。最初期作品のため拙いです。</div>
+    <div class="work-platforms">
+      <a href="https://www.pixiv.net/novel/show.php?id=21226533" class="work-read-btn" target="_blank">📖 この作品を読む</a>
+    </div>
+    <div class="work-date">掲載 2023/12</div>
+  </div>
+</div>
+
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== ファンタジーシリーズ ========== -->
+
+  <div class="section">
+    <div class="section-title">🪽 ファンタジーシリーズ</div>
+
+<div class="sub-heading">🌟 メインシリーズ（世界観共通）</div>
+
+<div class="work-detail" id="renkinjutsushi">
+  <div class="work-detail-cover gc5">
+    <div class="work-detail-labels">
+      <span class="d-label dl-complete">完結</span>
+      <span class="d-label dl-long">長編</span>
+      <span class="d-label dl-r18">R18</span>
+      <span class="d-label dl-volume">全18万文字</span>
+    </div>
+    <div class="work-detail-title">見習い錬金術師の恋と宝石</div>
+  </div>
+  <div class="work-detail-body">
+    <div class="work-coupling">🍒 常に2位の女×常に1位の男</div>
+    <div class="work-tag">#ケンカップル</div>
+    <div class="work-synopsis-full">惚れ薬（失敗作・媚薬）を被ったことで、えっちな気分になったライバルと仮眠室に閉じ込められてしまうところから始まる、喧嘩ばっかりな二人の恋と魔法のお話。初めて書いた長編作品になります。</div>
+    <div class="work-platforms">
+      <a href="https://novel18.syosetu.com/n4212jw/" class="work-read-btn" target="_blank">📖 この作品を読む</a>
+    </div>
+    <div class="work-date">掲載 2025/05</div>
+  </div>
+</div>
+
+<div class="sub-heading">🌙 別世界のお話</div>
+
+<div class="work-detail" id="maounomusume">
+  <div class="work-detail-cover gc4">
+    <div class="work-detail-labels">
+      <span class="d-label dl-complete">完結</span>
+      <span class="d-label dl-short">短編</span>
+      <span class="d-label dl-all">全年齢</span>
+      <span class="d-label dl-volume">全2.2万文字</span>
+    </div>
+    <div class="work-detail-title">魔王の娘と勇者様</div>
+  </div>
+  <div class="work-detail-body">
+    <div class="work-coupling">🍒 魔王の娘×傲慢な勇者</div>
+    <div class="work-tag">#ロリおに（？）</div>
+    <div class="work-synopsis-full">魔王の娘・エリシアは父親の束縛から逃げる決意をする。傲慢な勇者・アロンは仲間に見限られ、逃げられない砂漠の旅を強いられる。正反対な二人のお話。</div>
+    <div class="work-platforms">
+      <a href="https://ncode.syosetu.com/n7968le/" class="work-read-btn" target="_blank">📖 この作品を読む</a>
+      <div class="work-also-on">こちらにも掲載：</div>
+      <a href="https://www.pixiv.net/novel/show.php?id=26167753" class="platform-link pl-pixiv" target="_blank">🎨 pixiv</a>
+    </div>
+    <div class="work-date">掲載 2025/10</div>
+  </div>
+</div>
+
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== 有料販売 ========== -->
+
+  <div class="section">
+    <div class="section-title">🛒 有料販売</div>
+
+<div class="work-detail" id="yuinao-full">
+  <div class="work-detail-cover gc1">
+    <div class="work-detail-labels">
+      <span class="d-label dl-preparing">準備中</span>
+      <span class="d-label dl-mid">中編</span>
+      <span class="d-label dl-r18">R18</span>
+      <span class="d-label dl-volume">全9万文字</span>
+    </div>
+    <div class="work-detail-title">【完全版】ユイちゃん×ナオくん+リリカちゃん</div>
+  </div>
+  <div class="work-detail-body">
+    <div class="work-coupling">🍒 優しい攻めちゃん×振り回される片思い君×意地悪な攻めちゃん</div>
+    <div class="work-tag">#仲良し3人組</div>
+    <div class="work-synopsis-full">イカレ幼馴染女によって尻開発済みの男子大学生が、好きな女の子の前で開発済みであることを暴露されるところから始まる仲良し女攻め3P小説。</div>
+    <div class="work-date">2026夏秋頃販売予定</div>
+  </div>
+</div>
+
+<div class="work-detail" id="yuinao-antholo">
+  <div class="work-detail-cover gc5">
+    <div class="work-detail-labels">
+      <span class="d-label dl-selling">販売中</span>
+      <span class="d-label dl-short">短編</span>
+      <span class="d-label dl-r18">R18</span>
+      <span class="d-label dl-volume">全1.6万文字</span>
+    </div>
+    <div class="work-detail-title">ぼくのかんがえたさいつよの女攻めVol.3<br>『ユイちゃん×ナオくん+リリカちゃん』</div>
+  </div>
+  <div class="work-detail-body">
+    <div class="work-coupling">冒頭1.6万文字先行公開中</div>
+    <div class="work-tag">#アンソロ参加中</div>
+    <div class="work-synopsis-full">優しく攻めるユイちゃんと意地悪に攻めるリリカちゃんによる仲良し女攻め3P小説――の冒頭1.6万文字を掲載中。</div>
+    <div class="work-platforms">
+      <a href="https://www.dlsite.com/girls-touch/work/=/product_id/RJ01579234.html" class="work-read-btn" target="_blank" style="background: linear-gradient(135deg, #E8A0BF, #C4A8E0);">🛒 この作品を購入する</a>
+      <div class="work-also-on">こちらでも販売中：</div>
+      <a href="https://lovecul.dmm.co.jp/tl/-/detail/=/cid=d_740450/" class="platform-link pl-fanza" target="_blank">🛒 FANZA</a>
+    </div>
+    <div class="work-date">掲載 2026/04</div>
+  </div>
+</div>
+
+  </div>
+
+</div>
+
+<footer>
+  <a href="site-top.html">← トップへ戻る</a>
+  <div style="margin-top: 8px;">© 2026 夜霧流るる / きりしま</div>
+</footer>
+
+</body>
+</html>

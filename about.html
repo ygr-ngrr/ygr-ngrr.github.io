@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>🎃 作者について — 夜霧流るる</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #F8F6FF; --card: #FFFFFF; --accent: #A8C4F0; --accent2: #E8A0BF; --accent3: #C4A8E0; --text: #4A4458; --text-light: #8E849E; --text-dark: #2E2440; --border: #E8E0F0; --shadow: 0 2px 20px rgba(74, 68, 88, 0.08); --shadow-hover: 0 8px 30px rgba(74, 68, 88, 0.15); --radius: 16px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background-color: #F8F6FF; color-scheme: light only; scroll-behavior: smooth; }
+  body { font-family: 'Zen Maru Gothic', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+  .page-header { text-align: center; padding: 50px 20px 40px; background: linear-gradient(135deg, #C8DDFB 0%, #E8C0D8 40%, #D0C0E8 100%); position: relative; }
+  .page-header h1 { font-family: 'Klee One', serif; font-size: clamp(22px, 5vw, 30px); font-weight: 600; color: var(--text-dark); margin-bottom: 4px; }
+  .page-header p { font-size: 13px; color: var(--text); opacity: 0.7; }
+  .back-link { position: absolute; top: 16px; left: 16px; text-decoration: none; font-size: 13px; color: var(--text); opacity: 0.7; transition: opacity 0.2s; }
+  .back-link:hover { opacity: 1; }
+  .header-wave { position: absolute; bottom: -2px; left: 0; width: 100%; height: 30px; background: var(--bg); clip-path: ellipse(55% 100% at 50% 100%); }
+  .section-nav { display: flex; justify-content: center; gap: 8px; padding: 20px 16px 8px; flex-wrap: wrap; }
+  .section-nav a { text-decoration: none; padding: 8px 18px; border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--text); background: var(--card); border: 1.5px solid var(--border); transition: all 0.3s ease; white-space: nowrap; }
+  .section-nav a:hover { background: var(--accent); color: white; border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(168, 196, 240, 0.3); }
+  .container { max-width: 720px; margin: 0 auto; padding: 20px 16px 60px; }
+  .section { margin-bottom: 40px; scroll-margin-top: 16px; }
+  .section-title { font-family: 'Klee One', serif; font-size: 18px; font-weight: 600; color: var(--text-dark); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .section-divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 40px 0; }
+  .profile-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow); text-align: center; position: relative; overflow: hidden; }
+  .profile-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, var(--accent), var(--accent2), var(--accent3)); }
+  .profile-icon { font-size: 48px; margin-bottom: 12px; }
+  .profile-name { font-family: 'Klee One', serif; font-size: 22px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+  .profile-circle { font-size: 12px; color: var(--text-light); margin-bottom: 16px; }
+  .profile-bio { font-size: 13px; line-height: 2; color: var(--text); text-align: left; max-width: 480px; margin: 0 auto; }
+  .style-list { display: flex; flex-direction: column; gap: 12px; }
+  .style-item { background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); display: flex; align-items: flex-start; gap: 14px; opacity: 0; transform: translateY(10px); animation: fadeUp 0.4s ease forwards; }
+  .style-item:nth-child(1) { animation-delay: 0.1s; } .style-item:nth-child(2) { animation-delay: 0.2s; } .style-item:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .style-icon { font-size: 24px; flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg); }
+  .style-text { flex: 1; }
+  .style-label { font-family: 'Klee One', serif; font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+  .style-desc { font-size: 12px; color: var(--text); line-height: 1.7; }
+  .fav-cloud { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 8px 0; }
+  .fav-tag { padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; background: var(--card); border: 1.5px solid var(--border); box-shadow: var(--shadow); transition: all 0.3s; opacity: 0; transform: scale(0.9); animation: popIn 0.3s ease forwards; }
+  .fav-tag:nth-child(1) { animation-delay: 0.05s; } .fav-tag:nth-child(2) { animation-delay: 0.1s; } .fav-tag:nth-child(3) { animation-delay: 0.15s; } .fav-tag:nth-child(4) { animation-delay: 0.2s; } .fav-tag:nth-child(5) { animation-delay: 0.25s; } .fav-tag:nth-child(6) { animation-delay: 0.3s; } .fav-tag:nth-child(7) { animation-delay: 0.35s; } .fav-tag:nth-child(8) { animation-delay: 0.4s; } .fav-tag:nth-child(9) { animation-delay: 0.45s; } .fav-tag:nth-child(10) { animation-delay: 0.5s; } .fav-tag:nth-child(11) { animation-delay: 0.55s; } .fav-tag:nth-child(12) { animation-delay: 0.6s; }
+  @keyframes popIn { to { opacity: 1; transform: scale(1); } }
+  .fav-tag:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .fav-tag.c1 { border-color: #D0C0E8; color: #7B5EA0; } .fav-tag.c2 { border-color: #F0C8D8; color: #B06080; } .fav-tag.c3 { border-color: #C0D8F0; color: #5878A0; } .fav-tag.c4 { border-color: #D8E0C8; color: #6B7850; } .fav-tag.c5 { border-color: #F0D8C0; color: #987050; }
+  .fav-note { text-align: center; font-size: 12px; color: var(--text-light); margin-top: 14px; line-height: 1.7; }
+  footer { text-align: center; padding: 30px 20px; font-size: 12px; color: var(--text-light); border-top: 1px solid var(--border); }
+  footer a { color: var(--accent2); text-decoration: none; }
+  .menu-btn { position: fixed; top: 16px; right: 16px; z-index: 1000; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--border); background: rgba(255,255,255,0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 12px rgba(74, 68, 88, 0.1); }
+  .menu-btn:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(74, 68, 88, 0.15); }
+  .menu-btn.open { background: var(--text-dark); border-color: var(--text-dark); }
+  .menu-btn-icon { display: flex; flex-direction: column; gap: 4px; width: 18px; transition: all 0.3s; }
+  .menu-btn-icon span { display: block; height: 2px; width: 100%; background: var(--text-dark); border-radius: 2px; transition: all 0.3s; }
+  .menu-btn.open .menu-btn-icon span { background: white; }
+  .menu-btn.open .menu-btn-icon span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .menu-btn.open .menu-btn-icon span:nth-child(2) { opacity: 0; }
+  .menu-btn.open .menu-btn-icon span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+  .menu-overlay { position: fixed; inset: 0; z-index: 999; background: rgba(248, 246, 255, 0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+  .menu-overlay.open { opacity: 1; pointer-events: auto; }
+  .menu-content { text-align: center; transform: translateY(15px); transition: transform 0.35s ease; }
+  .menu-overlay.open .menu-content { transform: translateY(0); }
+  .menu-site-name { font-family: 'Klee One', serif; font-size: 18px; font-weight: 600; color: var(--text-dark); margin-bottom: 28px; }
+  .menu-group { margin-bottom: 24px; }
+  .menu-group-label { font-size: 10px; font-weight: 700; color: var(--text-light); letter-spacing: 0.1em; margin-bottom: 10px; text-transform: uppercase; }
+  .menu-link { display: block; text-decoration: none; font-family: 'Klee One', serif; font-size: 16px; font-weight: 600; color: var(--text-dark); padding: 10px 0; transition: color 0.2s; }
+  .menu-link:hover { color: var(--accent2); }
+  .menu-link-sub { font-size: 11px; font-weight: 400; color: var(--text-light); font-family: 'Zen Maru Gothic', sans-serif; }
+  .menu-external { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .menu-ext-link { text-decoration: none; padding: 6px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--text); background: var(--card); border: 1.5px solid var(--border); transition: all 0.2s; }
+  .menu-ext-link:hover { border-color: var(--accent); transform: translateY(-1px); }
+</style>
+</head>
+<body>
+
+<button class="menu-btn" onclick="toggleMenu()" aria-label="メニュー">
+  <div class="menu-btn-icon"><span></span><span></span><span></span></div>
+</button>
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenuOnBg(event)">
+  <div class="menu-content">
+    <div class="menu-site-name">🪐 夜霧流るる</div>
+    <div class="menu-group">
+      <div class="menu-group-label">ページ</div>
+      <a href="site-top.html" class="menu-link" onclick="toggleMenu()">🏠 トップ</a>
+      <a href="guide.html" class="menu-link" onclick="toggleMenu()">🔰 はじめての方へ</a>
+      <a href="works-list.html" class="menu-link" onclick="toggleMenu()">📚 作品一覧</a>
+      <span class="menu-link" style="opacity: 0.5; cursor: default;">🌏 世界観と読む順番（準備中）</span>
+      <a href="about.html" class="menu-link" onclick="toggleMenu()">🎃 作者について</a>
+    </div>
+    <div class="menu-group">
+      <div class="menu-group-label">リンク</div>
+      <div class="menu-external">
+        <a href="https://bsky.app/profile/ngrryr.bsky.social" class="menu-ext-link" target="_blank">🦋 Bluesky</a>
+        <a href="https://xmypage.syosetu.com/x4534bv/" class="menu-ext-link" target="_blank">🌙 ムーンライトノベルズ</a>
+        <a href="https://www.pixiv.net/users/20023895" class="menu-ext-link" target="_blank">🎨 pixiv</a>
+        <span class="menu-ext-link" style="opacity: 0.5; cursor: default;">🛒 DLsite（準備中）</span>
+        <a href="https://note.com/clean_otter176" class="menu-ext-link" target="_blank">📝 note</a>
+      </div>
+    </div>
+    <div class="menu-group">
+      <a href="site-top.html#contact" class="menu-link" onclick="toggleMenu()">📬 感想・メッセージ <span class="menu-link-sub">匿名OK</span></a>
+    </div>
+  </div>
+</div>
+<script>
+function toggleMenu() {
+  document.querySelector('.menu-btn').classList.toggle('open');
+  document.getElementById('menuOverlay').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('menuOverlay').classList.contains('open') ? 'hidden' : '';
+}
+function closeMenuOnBg(e) {
+  if (e.target === document.getElementById('menuOverlay')) toggleMenu();
+}
+</script>
+
+<header class="page-header">
+  <a href="site-top.html" class="back-link">← トップへ戻る</a>
+  <h1>🎃 作者について</h1>
+  <p>自己紹介と好きなもの</p>
+  <div class="header-wave"></div>
+</header>
+
+<nav class="section-nav">
+  <a href="#profile">🙋 自己紹介</a>
+  <a href="#style">🖊️ 書いてるもの</a>
+  <a href="#favorites">🧡 好きなもの</a>
+</nav>
+
+<div class="container">
+  <div class="section" id="profile">
+    <div class="profile-card">
+      <div class="profile-icon">🪐</div>
+      <div class="profile-name">きりしま</div>
+      <div class="profile-circle">サークル「夜霧流るる」</div>
+      <div class="profile-bio">物語だいすき人間です。<br>ムーンライトノベルズ・pixiv・DLsiteで作品を公開しています。<br>お気軽にフォロー・感想お待ちしています。</div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+  <div class="section" id="style">
+    <div class="section-title">🖊️ こういうの書いてます</div>
+    <div class="style-list">
+      <div class="style-item"><div class="style-icon">👑</div><div class="style-text"><div class="style-label">女性優位多め</div><div class="style-desc">女性がリードする関係性が好きで、多くの作品で女性優位な恋愛を描いています。作品によって優位度はさまざまです。</div></div></div>
+      <div class="style-item"><div class="style-icon">🔥</div><div class="style-text"><div class="style-label">仲の悪い二人が恋愛する話</div><div class="style-desc">最初は険悪だったり噛み合わなかったりする二人が、やがて惹かれ合っていく——そういう関係性を書きがちです。</div></div></div>
+      <div class="style-item"><div class="style-icon">📝</div><div class="style-text"><div class="style-label">完成してから連載するスタイル</div><div class="style-desc">最後まで書き上げてから投稿しています。エタることがないので安心して読めます。</div></div></div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+  <div class="section" id="favorites">
+    <div class="section-title">🧡 好きなもの</div>
+    <div class="fav-cloud">
+      <span class="fav-tag c1">📚 十二国記</span>
+      <span class="fav-tag c1">📚 ゴーストハント</span>
+      <span class="fav-tag c2">📖 ONE PIECE</span>
+      <span class="fav-tag c2">📖 フルーツバスケット</span>
+      <span class="fav-tag c2">📖 ヴァニタスの手記</span>
+      <span class="fav-tag c3">📺 MIU404</span>
+      <span class="fav-tag c3">📺 アンナチュラル</span>
+      <span class="fav-tag c3">📺 ストレンジャーシングス</span>
+      <span class="fav-tag c5">🎬 ラストマイル</span>
+      <span class="fav-tag c5">🎬 エノーラ・ホームズの事件簿</span>
+      <span class="fav-tag c5">🎬 オーシャンズ8</span>
+      <span class="fav-tag c4">🎥 ナポリの男たち</span>
+    </div>
+    <div class="fav-note">好きなものを語り出すと止まらないタイプです（ ᴖ ̫ᴖ ）</div>
+  </div>
+</div>
+
+<footer>
+  <a href="site-top.html">← トップへ戻る</a>
+  <div style="margin-top: 8px;">© 2026 夜霧流るる / きりしま</div>
+</footer>
+
+</body>
+</html>
