@@ -14,7 +14,6 @@
   gtag('config', 'G-G0VN07DVCG');
 </script>
 <title>📚 作品一覧 — 夜霧流るる</title>
-
 <!-- OGP -->
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ygr-ngrr.github.io/works-list.html">
@@ -23,7 +22,6 @@
 <meta property="og:image" content="https://ygr-ngrr.github.io/ogp-image.png">
 <meta property="og:site_name" content="夜霧流るる">
 <meta name="twitter:card" content="summary_large_image">
-  
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -115,6 +113,9 @@
 .link-playlist:hover { background: #E65100; color: white; }
 .link-afterword { background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; }
 .link-afterword:hover { background: #2E7D32; color: white; }
+
+.share-btn { display: inline-block; padding: 5px 14px; border-radius: 100px; font-size: 11px; font-weight: 500; color: var(--text); background: var(--card); border: 1.5px solid var(--border); cursor: pointer; transition: all 0.3s; font-family: 'Zen Maru Gothic', sans-serif; margin-top: 6px; }
+.share-btn:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(168, 196, 240, 0.3); }
 
 footer { text-align: center; padding: 30px 20px; font-size: 12px; color: var(--text-light); border-top: 1px solid var(--border); }
 footer a { color: var(--accent2); text-decoration: none; }
@@ -347,6 +348,7 @@ function closeMenuOnBg(e) {
       <a href="https://note.com/clean_otter176/n/n6b1c2a1a27bd" class="extra-link link-afterword" target="_blank">📝 あとがき</a>
     </div>
     <div class="work-date">掲載 2026/03</div>
+    <button class="share-btn" onclick="shareWork('【クソ主任に鎖。】', 'kusoshunin')">📤 シェア</button>
   </div>
 </div>
 
@@ -372,6 +374,7 @@ function closeMenuOnBg(e) {
       <a href="https://www.pixiv.net/novel/show.php?id=23777053" class="platform-link pl-pixiv" target="_blank">🎨 pixiv</a>
     </div>
     <div class="work-date">掲載 2025/01</div>
+    <button class="share-btn" onclick="shareWork('年始休みで暇なOLが隣に住んでいる男子大学生を美味しく頂いちゃう話。', 'himaol')">📤 シェア</button>
   </div>
 </div>
 
@@ -393,6 +396,7 @@ function closeMenuOnBg(e) {
       <a href="https://www.pixiv.net/novel/show.php?id=21226533" class="work-read-btn" target="_blank">📖 この作品を読む</a>
     </div>
     <div class="work-date">掲載 2023/12</div>
+    <button class="share-btn" onclick="shareWork('生意気金持ち男の弱みを握って掃除させる話。', 'namaiki')">📤 シェア</button>
   </div>
 </div>
 
@@ -425,6 +429,7 @@ function closeMenuOnBg(e) {
       <a href="https://novel18.syosetu.com/n4212jw/" class="work-read-btn" target="_blank">📖 この作品を読む</a>
     </div>
     <div class="work-date">掲載 2025/05</div>
+    <button class="share-btn" onclick="shareWork('見習い錬金術師の氷と宝石', 'renkinjutsushi')">📤 シェア</button>
   </div>
 </div>
 
@@ -450,6 +455,7 @@ function closeMenuOnBg(e) {
       <a href="https://www.pixiv.net/novel/show.php?id=26167753" class="platform-link pl-pixiv" target="_blank">🎨 pixiv</a>
     </div>
     <div class="work-date">掲載 2025/10</div>
+    <button class="share-btn" onclick="shareWork('魔王の娘と勇者様', 'maounomusume')">📤 シェア</button>
   </div>
 </div>
 
@@ -477,6 +483,7 @@ function closeMenuOnBg(e) {
     <div class="work-tag">#仲良し3人組</div>
     <div class="work-synopsis-full">イカレ幼馴染女によって尻開発済みの男子大学生が、好きな女の子の前で開発済みであることを暴露されるところから始まる仲良し女攻め3P小説。</div>
     <div class="work-date">2026夏秋頃販売予定</div>
+    <button class="share-btn" onclick="shareWork('【完全版】ユイちゃん×ナオくん+リリカちゃん', 'yuinao-full')">📤 シェア</button>
   </div>
 </div>
 
@@ -500,6 +507,7 @@ function closeMenuOnBg(e) {
       <a href="https://lovecul.dmm.co.jp/tl/-/detail/=/cid=d_740450/" class="platform-link pl-fanza" target="_blank">FANZA</a>
     </div>
     <div class="work-date">掲載 2026/04</div>
+    <button class="share-btn" onclick="shareWork('ぼくのかんがえたさいつよの女攻めVol.3', 'yuinao-antholo')">📤 シェア</button>
   </div>
 </div>
 
@@ -512,5 +520,28 @@ function closeMenuOnBg(e) {
   <div style="margin-top: 8px;">© 2026 夜霧流るる / きりしま</div>
 </footer>
 
+
+<script>
+async function shareWork(title, id) {
+  const url = 'https://ygr-ngrr.github.io/works-list.html#' + id;
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: title + ' — 夜霧流るる',
+        text: title + ' を読んでみて！',
+        url: url
+      });
+    } catch (err) {}
+  } else {
+    // PC等で非対応の場合はURLをコピー
+    try {
+      await navigator.clipboard.writeText(url);
+      const btns = document.querySelectorAll('.share-btn');
+      event.target.textContent = '✅ コピーしました';
+      setTimeout(() => { event.target.textContent = '📤 シェア'; }, 2000);
+    } catch (err) {}
+  }
+}
+</script>
 </body>
 </html>
