@@ -14,16 +14,6 @@
   gtag('config', 'G-G0VN07DVCG');
 </script>
 <title>🪐 夜霧流るる — きりしまの本棚</title>
-
-<!-- OGP -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://ygr-ngrr.github.io/">
-<meta property="og:title" content="🪐 夜霧流るる — きりしまの本棚">
-<meta property="og:description" content="こんばんは。きりしまの本棚へようこそ。女性優位多めの創作小説サイトです。">
-<meta property="og:image" content="https://ygr-ngrr.github.io/ogp-image.png">
-<meta property="og:site_name" content="夜霧流るる">
-<meta name="twitter:card" content="summary_large_image">
-  
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
@@ -608,6 +598,148 @@ to { opacity: 1; transform: translateY(0); }
 nav a { font-size: 12px; padding: 6px 14px; }
 }
 
+/* ===== BLUESKY FEED ===== */
+.bsky-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bsky-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.bsky-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
+}
+
+.bsky-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.bsky-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.bsky-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bsky-user-info { flex: 1; min-width: 0; }
+
+.bsky-display-name {
+  font-family: 'Klee One', serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.bsky-handle {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.bsky-date {
+  font-size: 11px;
+  color: var(--text-light);
+  flex-shrink: 0;
+}
+
+.bsky-text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bsky-text a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.bsky-text a:hover { text-decoration: underline; }
+
+.bsky-images {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.bsky-images.count-1 { grid-template-columns: 1fr; }
+.bsky-images.count-2 { grid-template-columns: 1fr 1fr; }
+.bsky-images.count-3 { grid-template-columns: 1fr 1fr; }
+.bsky-images.count-4 { grid-template-columns: 1fr 1fr; }
+.bsky-images img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.bsky-footer {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.bsky-follow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Klee One', serif;
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 20px;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  background: var(--card);
+  transition: all 0.3s ease;
+}
+.bsky-follow-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(168, 196, 240, 0.3);
+}
+
+.bsky-loading {
+  text-align: center;
+  padding: 32px 0;
+  color: var(--text-light);
+  font-size: 13px;
+}
+
+.bsky-error {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-light);
+  font-size: 13px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+}
+
 /* ===== HAMBURGER MENU ===== */
 .menu-btn {
   position: fixed;
@@ -865,7 +997,7 @@ function closeMenuOnBg(e) {
     <div class="section-title"><span>📝</span> 更新履歴</div>
 
 <div class="pinned-notice fade-in">
-  <div class="pinned-label">📌 お知らせ　2026/04/01</div>
+  <div class="pinned-label">📌 お知らせ　2026/04/04</div>
   <div class="pinned-text">個人サイトオープンしました！<br>現在、作品準備中です(  ॑˘ ॑* ) 次回作もムーンライトノベルズに掲載予定。お楽しみに✨</div>
 </div>
 
@@ -909,6 +1041,18 @@ function closeMenuOnBg(e) {
     </div>
   </div>
 
+  <!-- BLUESKY FEED -->
+
+  <div class="section" id="bluesky">
+    <div class="section-title"><span>🦋</span> Bluesky</div>
+    <div class="bsky-feed fade-in" id="bsky-feed">
+      <div class="bsky-loading">ポストを読み込んでいます…</div>
+    </div>
+    <div class="bsky-footer fade-in">
+      <a href="https://bsky.app/profile/ngrryr.bsky.social" class="bsky-follow-btn" target="_blank" rel="noopener noreferrer">🦋 Blueskyでフォローする</a>
+    </div>
+  </div>
+
   <!-- LINKS -->
 
   <div class="section" id="links">
@@ -927,6 +1071,107 @@ function closeMenuOnBg(e) {
 <footer>
   © 2026 夜霧流るる / きりしま
 </footer>
+
+<script>
+(async function loadBlueskyFeed() {
+  var HANDLE = 'ngrryr.bsky.social';
+  var DISPLAY_COUNT = 3;
+  var container = document.getElementById('bsky-feed');
+
+  try {
+    var res = await fetch(
+      'https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=' + HANDLE + '&limit=10&filter=posts_no_replies'
+    );
+    if (!res.ok) throw new Error('API error: ' + res.status);
+
+    var data = await res.json();
+    var posts = data.feed
+      .filter(function(item) { return !item.reason; })
+      .slice(0, DISPLAY_COUNT);
+
+    if (posts.length === 0) {
+      container.innerHTML = '<div class="bsky-error">ポストが見つかりませんでした</div>';
+      return;
+    }
+
+    container.innerHTML = posts.map(function(item) {
+      var post = item.post;
+      var record = post.record;
+      var author = post.author;
+      var date = new Date(record.createdAt);
+      var dateStr = date.getFullYear() + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + String(date.getDate()).padStart(2, '0');
+
+      // テキスト処理
+      var text = escapeHtml(record.text || '');
+
+      // facetsからリンクを復元
+      if (record.facets && record.facets.length > 0) {
+        var encoder = new TextEncoder();
+        var bytes = encoder.encode(record.text || '');
+        var sortedFacets = record.facets.slice().sort(function(a, b) {
+          return b.index.byteStart - a.index.byteStart;
+        });
+
+        sortedFacets.forEach(function(facet) {
+          var linkFeature = facet.features.find(function(f) {
+            return f.$type === 'app.bsky.richtext.facet#link';
+          });
+          if (linkFeature) {
+            var sliceBytes = bytes.slice(facet.index.byteStart, facet.index.byteEnd);
+            var decoder = new TextDecoder();
+            var originalText = decoder.decode(sliceBytes);
+            var escapedOriginal = escapeHtml(originalText);
+            text = text.replace(
+              escapedOriginal,
+              '<a href="' + escapeHtml(linkFeature.uri) + '" target="_blank" rel="noopener noreferrer">' + escapedOriginal + '</a>'
+            );
+          }
+        });
+      }
+
+      // 画像処理
+      var imagesHtml = '';
+      if (post.embed && post.embed.$type === 'app.bsky.embed.images#view' && post.embed.images) {
+        var imgs = post.embed.images;
+        imagesHtml = '<div class="bsky-images count-' + Math.min(imgs.length, 4) + '">' +
+          imgs.map(function(img) {
+            return '<img src="' + img.thumb + '" alt="' + escapeHtml(img.alt || '') + '" loading="lazy">';
+          }).join('') + '</div>';
+      }
+
+      // アバター
+      var avatarHtml = author.avatar ? '<img src="' + author.avatar + '" alt="" loading="lazy">' : '';
+
+      // ポストURL
+      var rkey = post.uri.split('/').pop();
+      var postUrl = 'https://bsky.app/profile/' + author.handle + '/post/' + rkey;
+
+      return '<a href="' + postUrl + '" class="bsky-card" target="_blank" rel="noopener noreferrer">' +
+        '<div class="bsky-card-header">' +
+          '<div class="bsky-avatar">' + avatarHtml + '</div>' +
+          '<div class="bsky-user-info">' +
+            '<div class="bsky-display-name">' + escapeHtml(author.displayName || author.handle) + '</div>' +
+            '<div class="bsky-handle">@' + escapeHtml(author.handle) + '</div>' +
+          '</div>' +
+          '<div class="bsky-date">' + dateStr + '</div>' +
+        '</div>' +
+        '<div class="bsky-text">' + text + '</div>' +
+        imagesHtml +
+      '</a>';
+    }).join('');
+
+  } catch (err) {
+    console.error('Bluesky feed error:', err);
+    container.innerHTML = '<div class="bsky-error">ポストの読み込みに失敗しました</div>';
+  }
+})();
+
+function escapeHtml(str) {
+  var div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+</script>
 
 </body>
 </html>
