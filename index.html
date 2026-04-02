@@ -490,6 +490,7 @@ margin-right: 6px;
 .tag-rank { background: #FFF8E1; color: #F57F17; }
 .tag-complete { background: #E8F5E9; color: #2E7D32; }
 .tag-sale { background: #FCE4EC; color: #C62828; }
+.tag-notice { background: #E8F5E9; color: #2E7D32; }
 
 /* ===== FORM SECTION ===== */
 .form-card {
@@ -723,23 +724,6 @@ nav a { font-size: 12px; padding: 6px 14px; }
   box-shadow: 0 4px 12px rgba(168, 196, 240, 0.3);
 }
 
-.bsky-loading {
-  text-align: center;
-  padding: 32px 0;
-  color: var(--text-light);
-  font-size: 13px;
-}
-
-.bsky-error {
-  text-align: center;
-  padding: 24px;
-  color: var(--text-light);
-  font-size: 13px;
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-}
-
 /* ===== HAMBURGER MENU ===== */
 .menu-btn {
   position: fixed;
@@ -903,6 +887,7 @@ nav a { font-size: 12px; padding: 6px 14px; }
       <a href="works-list.html" class="menu-link" onclick="toggleMenu()">📚 作品一覧</a>
       <span class="menu-link" style="opacity: 0.5; cursor: default;">🌏 世界観と読む順番（準備中）</span>
       <a href="about.html" class="menu-link" onclick="toggleMenu()">🎃 作者について</a>
+      <a href="updates.html" class="menu-link" onclick="toggleMenu()">📝 更新履歴</a>
     </div>
 
     <div class="menu-group">
@@ -995,29 +980,12 @@ function closeMenuOnBg(e) {
 
   <div class="section" id="updates">
     <div class="section-title"><span>📝</span> 更新履歴</div>
-
-<div class="pinned-notice fade-in">
-  <div class="pinned-label">📌 お知らせ　2026/04/04</div>
-  <div class="pinned-text">個人サイトオープンしました！<br>現在、作品準備中です(  ॑˘ ॑* ) 次回作もムーンライトノベルズに掲載予定。お楽しみに✨</div>
-</div>
-
-<div class="timeline fade-in">
-  <div class="timeline-item">
-    <div class="timeline-date">2026.04.01</div>
-    <div class="timeline-content">
-      <span class="timeline-tag tag-sale">販売開始</span>
-      女攻めアンソロvol.3 販売開始しました。
+    <div id="updates-container">
+      <div style="text-align:center; padding:32px 0; color:#8E849E; font-size:13px;">更新履歴を読み込んでいます…</div>
     </div>
-  </div>
-  <div class="timeline-item">
-    <div class="timeline-date">2026.03.28</div>
-    <div class="timeline-content">
-      <span class="timeline-tag tag-complete">完結</span>
-      【クソ主任に鎖。】完結しました。
+    <div style="text-align:center; margin-top:16px;">
+      <a href="updates.html" style="display:inline-block; text-decoration:none; padding:8px 20px; border-radius:100px; font-family:'Klee One',serif; font-size:13px; color:#4A4458; background:#FFFFFF; border:1.5px solid #E8E0F0; transition:all 0.3s;">📝 すべての更新履歴を見る →</a>
     </div>
-  </div>
-</div>
-
   </div>
 
   <!-- CONTACT -->
@@ -1046,7 +1014,7 @@ function closeMenuOnBg(e) {
   <div class="section" id="bluesky">
     <div class="section-title"><span>🦋</span> Bluesky</div>
     <div class="bsky-feed fade-in" id="bsky-feed">
-      <div class="bsky-loading">ポストを読み込んでいます…</div>
+      <div style="text-align:center; padding:32px 0; color:#8E849E; font-size:13px;">ポストを読み込んでいます…</div>
     </div>
     <div class="bsky-footer fade-in">
       <a href="https://bsky.app/profile/ngrryr.bsky.social" class="bsky-follow-btn" target="_blank" rel="noopener noreferrer">🦋 Blueskyでフォローする</a>
@@ -1073,6 +1041,76 @@ function closeMenuOnBg(e) {
 </footer>
 
 <script>
+// ===== 更新履歴の動的読み込み =====
+(async function loadTopUpdates() {
+  var API_URL = "https://script.google.com/macros/s/AKfycbx_69JpottyQ7psYk4-nsIT1jNVYEOrfm6jNiloByLgLD3lfaGJ6NKpY4M8Xge7k3jMlQ/exec";
+  var DISPLAY_COUNT = 3;
+  var container = document.getElementById("updates-container");
+
+  var TAG_MAP = {
+    "新話投稿": { cls: "tag-new",      label: "新話投稿" },
+    "ランクイン": { cls: "tag-rank",    label: "ランクイン" },
+    "お知らせ":   { cls: "tag-notice",  label: "お知らせ" },
+    "完結":       { cls: "tag-complete", label: "完結" },
+    "販売開始":   { cls: "tag-sale",    label: "販売開始" },
+  };
+
+  try {
+    var res = await fetch(API_URL);
+    if (!res.ok) throw new Error("API error");
+    var data = await res.json();
+    if (!data || data.length === 0) {
+      container.innerHTML = '<div style="text-align:center;padding:24px;color:#8E849E;font-size:13px;">更新履歴がありません</div>';
+      return;
+    }
+
+    var pinned = data.filter(function(item) { return item.pinned; });
+    var regular = data.filter(function(item) { return !item.pinned; }).slice(0, DISPLAY_COUNT);
+    var html = "";
+
+    pinned.forEach(function(item) {
+      var dateStr = formatUpdateDate(item.date);
+      html += '<div class="pinned-notice fade-in">'
+        + '<div class="pinned-label">📌 お知らせ　' + esc(dateStr) + '</div>'
+        + '<div class="pinned-text">' + esc(item.content) + '</div>'
+        + '</div>';
+    });
+
+    if (regular.length > 0) {
+      html += '<div class="timeline fade-in">';
+      regular.forEach(function(item) {
+        var dateStr = formatUpdateDate(item.date);
+        var tag = TAG_MAP[item.type] || { cls: "tag-notice", label: item.type };
+        html += '<div class="timeline-item">'
+          + '<div class="timeline-date">' + esc(dateStr) + '</div>'
+          + '<div class="timeline-content">'
+          + '<span class="timeline-tag ' + tag.cls + '">' + esc(tag.label) + '</span>'
+          + esc(item.content)
+          + '</div></div>';
+      });
+      html += '</div>';
+    }
+
+    container.innerHTML = html;
+  } catch (err) {
+    console.error("Updates error:", err);
+    container.innerHTML = '<div style="text-align:center;padding:24px;color:#8E849E;font-size:13px;">更新履歴の読み込みに失敗しました</div>';
+  }
+})();
+
+function formatUpdateDate(dateStr) {
+  if (!dateStr) return "";
+  var parts = dateStr.split("-");
+  return parts.length === 3 ? parts[0] + "/" + parts[1] + "/" + parts[2] : dateStr;
+}
+
+function esc(str) {
+  var d = document.createElement("div");
+  d.textContent = str || "";
+  return d.innerHTML;
+}
+
+// ===== Blueskyフィードの読み込み =====
 (async function loadBlueskyFeed() {
   var HANDLE = 'ngrryr.bsky.social';
   var DISPLAY_COUNT = 3;
@@ -1090,7 +1128,7 @@ function closeMenuOnBg(e) {
       .slice(0, DISPLAY_COUNT);
 
     if (posts.length === 0) {
-      container.innerHTML = '<div class="bsky-error">ポストが見つかりませんでした</div>';
+      container.innerHTML = '<div style="text-align:center;padding:24px;color:#8E849E;font-size:13px;">ポストが見つかりませんでした</div>';
       return;
     }
 
@@ -1101,17 +1139,14 @@ function closeMenuOnBg(e) {
       var date = new Date(record.createdAt);
       var dateStr = date.getFullYear() + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + String(date.getDate()).padStart(2, '0');
 
-      // テキスト処理
-      var text = escapeHtml(record.text || '');
+      var text = esc(record.text || '');
 
-      // facetsからリンクを復元
       if (record.facets && record.facets.length > 0) {
         var encoder = new TextEncoder();
         var bytes = encoder.encode(record.text || '');
         var sortedFacets = record.facets.slice().sort(function(a, b) {
           return b.index.byteStart - a.index.byteStart;
         });
-
         sortedFacets.forEach(function(facet) {
           var linkFeature = facet.features.find(function(f) {
             return f.$type === 'app.bsky.richtext.facet#link';
@@ -1120,29 +1155,25 @@ function closeMenuOnBg(e) {
             var sliceBytes = bytes.slice(facet.index.byteStart, facet.index.byteEnd);
             var decoder = new TextDecoder();
             var originalText = decoder.decode(sliceBytes);
-            var escapedOriginal = escapeHtml(originalText);
+            var escapedOriginal = esc(originalText);
             text = text.replace(
               escapedOriginal,
-              '<a href="' + escapeHtml(linkFeature.uri) + '" target="_blank" rel="noopener noreferrer">' + escapedOriginal + '</a>'
+              '<a href="' + esc(linkFeature.uri) + '" target="_blank" rel="noopener noreferrer">' + escapedOriginal + '</a>'
             );
           }
         });
       }
 
-      // 画像処理
       var imagesHtml = '';
       if (post.embed && post.embed.$type === 'app.bsky.embed.images#view' && post.embed.images) {
         var imgs = post.embed.images;
         imagesHtml = '<div class="bsky-images count-' + Math.min(imgs.length, 4) + '">' +
           imgs.map(function(img) {
-            return '<img src="' + img.thumb + '" alt="' + escapeHtml(img.alt || '') + '" loading="lazy">';
+            return '<img src="' + img.thumb + '" alt="' + esc(img.alt || '') + '" loading="lazy">';
           }).join('') + '</div>';
       }
 
-      // アバター
       var avatarHtml = author.avatar ? '<img src="' + author.avatar + '" alt="" loading="lazy">' : '';
-
-      // ポストURL
       var rkey = post.uri.split('/').pop();
       var postUrl = 'https://bsky.app/profile/' + author.handle + '/post/' + rkey;
 
@@ -1150,8 +1181,8 @@ function closeMenuOnBg(e) {
         '<div class="bsky-card-header">' +
           '<div class="bsky-avatar">' + avatarHtml + '</div>' +
           '<div class="bsky-user-info">' +
-            '<div class="bsky-display-name">' + escapeHtml(author.displayName || author.handle) + '</div>' +
-            '<div class="bsky-handle">@' + escapeHtml(author.handle) + '</div>' +
+            '<div class="bsky-display-name">' + esc(author.displayName || author.handle) + '</div>' +
+            '<div class="bsky-handle">@' + esc(author.handle) + '</div>' +
           '</div>' +
           '<div class="bsky-date">' + dateStr + '</div>' +
         '</div>' +
@@ -1162,15 +1193,9 @@ function closeMenuOnBg(e) {
 
   } catch (err) {
     console.error('Bluesky feed error:', err);
-    container.innerHTML = '<div class="bsky-error">ポストの読み込みに失敗しました</div>';
+    container.innerHTML = '<div style="text-align:center;padding:24px;color:#8E849E;font-size:13px;">ポストの読み込みに失敗しました</div>';
   }
 })();
-
-function escapeHtml(str) {
-  var div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
 </script>
 
 </body>
