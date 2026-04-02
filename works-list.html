@@ -528,7 +528,8 @@ async function shareWork(title, id) {
     try {
       await navigator.share({
         title: title + ' — 夜霧流るる',
-        text: title + ' — 夜霧流るる\n' + url
+        text: title + ' — 夜霧流るる\n' + url,
+        url: url
       });
     } catch (err) {}
   } else {
