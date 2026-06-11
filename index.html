@@ -212,12 +212,11 @@ max-width: 400px;
 margin: 0 auto;
 }
 
-/* PC幅ではピックアップを横並びに（1作品のときは中央に1枚） */
+/* PC幅でピックアップが2作品あるときは横並びに（1作品のときは中央に1枚） */
 @media (min-width: 700px) {
-.works-grid {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 380px));
-  justify-content: center;
-  max-width: none;
+.works-grid.two-up {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 780px;
 }
 }
 
@@ -1279,6 +1278,7 @@ async function loadPickup() {
       return;
     }
     el.innerHTML = top.map((p, i) => pickupCard(p.w, p.genre, i)).join("");
+    el.classList.toggle("two-up", top.length >= 2);
   } catch (e) {
     el.innerHTML = '<div style="text-align:center; padding:32px 0; color:#8E849E; font-size:13px; grid-column:1/-1;">作品を読み込めませんでした。<a href="works-list.html" style="color:#A8C4F0;">作品一覧はこちら</a></div>';
   }
