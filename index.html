@@ -212,6 +212,15 @@ max-width: 400px;
 margin: 0 auto;
 }
 
+/* PC幅ではピックアップを横並びに（1作品のときは中央に1枚） */
+@media (min-width: 700px) {
+.works-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 380px));
+  justify-content: center;
+  max-width: none;
+}
+}
+
 .work-card {
 background: var(--card);
 border-radius: var(--radius);
