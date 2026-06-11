@@ -55,6 +55,10 @@
 .section-title { font-family: 'Klee One', serif; font-size: 18px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; padding-bottom: 8px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 8px; }
 .section-desc { font-size: 13px; color: var(--text-light); margin-bottom: 16px; line-height: 1.6; }
 .sub-heading { font-family: 'Klee One', serif; font-size: 14px; font-weight: 600; color: var(--accent3); margin: 24px 0 12px; padding-left: 4px; }
+.works-loading { text-align: center; color: var(--text-light); font-size: 13px; padding: 60px 0; }
+.works-error { text-align: center; color: var(--text-light); font-size: 13px; padding: 40px 16px; background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); }
+.works-error a { color: var(--accent1); }
+
 .section-divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 40px 0; }
 
 .work-detail { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; transition: all 0.3s; opacity: 0; transform: translateY(20px); animation: fadeIn 0.5s ease forwards; scroll-margin-top: 16px; }
@@ -277,7 +281,6 @@ footer a { color: var(--accent2); text-decoration: none; }
       <a href="works-list.html" class="menu-link" onclick="toggleMenu()">📚 作品一覧</a>
       <span class="menu-link" style="opacity: 0.5; cursor: default;">🌏 世界観と読む順番（準備中）</span>
       <a href="about.html" class="menu-link" onclick="toggleMenu()">🎃 作者について</a>
-      <a href="updates.html" class="menu-link" onclick="toggleMenu()">📝 更新履歴</a>
     </div>
 
     <div class="menu-group">
@@ -293,7 +296,6 @@ footer a { color: var(--accent2); text-decoration: none; }
 
     <div class="menu-group">
       <a href="index.html#contact" class="menu-link" onclick="toggleMenu()">📬 感想・メッセージ <span class="menu-link-sub">匿名OK</span></a>
-      <a href="line.html" class="menu-link" onclick="toggleMenu()">📱 LINE通知を受け取る</a>
     </div>
   </div>
 </div>
@@ -319,89 +321,21 @@ function closeMenuOnBg(e) {
 
 <div class="container">
 
+  <div class="works-loading" id="worksLoading">🪐 作品データを読み込んでいます…</div>
+
+  <div class="works-error" id="worksError" style="display: none;">
+    作品データを読み込めませんでした。<br>
+    時間をおいて<a href="javascript:location.reload()">再読み込み</a>をお試しください。
+  </div>
+
+  <div id="worksContent" style="display: none;">
+
   <!-- ========== 現代シリーズ ========== -->
 
   <div class="section">
     <div class="section-title">🍰 現代シリーズ</div>
-
-<div class="sub-heading">🌟 メインシリーズ（世界観共通）</div>
-<!-- <div class="section-desc">同じ世界観のお話です。どの作品から読んでも楽しめます。</div> -->
-
-<div class="work-detail" id="kusoshunin">
-  <div class="work-detail-cover gc1">
-    <div class="work-detail-labels">
-      <span class="d-label dl-badge">⭐ 代表作</span>
-      <span class="d-label dl-complete">完結</span>
-      <span class="d-label dl-long">長編</span>
-      <span class="d-label dl-r18">R18</span>
-      <span class="d-label dl-volume">全30万文字</span>
-    </div>
-    <div class="work-detail-title">【クソ主任に鎖。】SMマチアプでマゾ男を呼び出したら、大嫌いなパワハラ上司が現れた話</div>
-  </div>
-  <div class="work-detail-body">
-    <div class="work-coupling">🍒 部下（飼い主女）× 上司（番犬男）</div>
-    <div class="work-tag">#主従関係</div>
-    <div class="work-synopsis-full">パワハラにストレスを溜めた久慈宮は、男を虐めてストレスを晴らそうと、SMマチアプに手を出した。待ち合わせ場所に現れたのは、久慈宮にパワハラをしている藍原主任、本人で――。憂さ晴らしから始まる少し変わったオフィスラブです。</div>
-    <div class="work-platforms">
-      <a href="https://novel18.syosetu.com/n9554lh/" class="work-read-btn" target="_blank">📖 この作品を読む</a>
-    </div>
-    <div class="work-extras">
-      <a href="https://music.youtube.com/playlist?list=PLGefxGcsfa7MOAWtGDQIB7CF1ZSNCJwcY&si=LTA-2SZQqXj3ISRo" class="extra-link link-playlist" target="_blank">🎵 イメージソング</a>
-      <a href="https://note.com/clean_otter176/n/n6b1c2a1a27bd" class="extra-link link-afterword" target="_blank">📝 あとがき</a>
-    </div>
-    <div class="work-date">掲載 2026/03</div>
-    <button class="share-btn" onclick="shareWork('【クソ主任に鎖。】', 'kusoshunin')">📤 シェア</button>
-  </div>
-</div>
-
-<div class="sub-heading">🌙 別世界のお話</div>
-
-<div class="work-detail" id="himaol">
-  <div class="work-detail-cover gc2">
-    <div class="work-detail-labels">
-      <span class="d-label dl-complete">完結</span>
-      <span class="d-label dl-short">短編</span>
-      <span class="d-label dl-r18">R18</span>
-      <span class="d-label dl-volume">全1.4万文字</span>
-    </div>
-    <div class="work-detail-title">年始休みで暇なOLが隣に住んでいる男子大学生を美味しく頂いちゃう話。</div>
-  </div>
-  <div class="work-detail-body">
-    <div class="work-coupling">🍒 暇な社畜OL×可哀想な男子大学生</div>
-    <div class="work-tag">#ペット扱い</div>
-    <div class="work-synopsis-full">タイトル通り。甘々（？）です。</div>
-    <div class="work-platforms">
-      <a href="https://novel18.syosetu.com/n7872jy/" class="work-read-btn" target="_blank">📖 この作品を読む</a>
-      <div class="work-also-on">こちらにも掲載：</div>
-      <a href="https://www.pixiv.net/novel/show.php?id=23777053" class="platform-link pl-pixiv" target="_blank">🎨 pixiv</a>
-    </div>
-    <div class="work-date">掲載 2025/01</div>
-    <button class="share-btn" onclick="shareWork('年始休みで暇なOLが隣に住んでいる男子大学生を美味しく頂いちゃう話。', 'himaol')">📤 シェア</button>
-  </div>
-</div>
-
-<div class="work-detail" id="namaiki">
-  <div class="work-detail-cover gc3">
-    <div class="work-detail-labels">
-      <span class="d-label dl-complete">完結</span>
-      <span class="d-label dl-short">短編</span>
-      <span class="d-label dl-all">全年齢</span>
-      <span class="d-label dl-volume">全0.6万文字</span>
-    </div>
-    <div class="work-detail-title">生意気金持ち男の弱みを握って掃除させる話。</div>
-  </div>
-  <div class="work-detail-body">
-    <div class="work-coupling">🍒 たくましい貧乏JK×傲慢DK</div>
-    <div class="work-tag">#下剋上</div>
-    <div class="work-synopsis-full">タイトル通り。最初期作品のため拙いです。</div>
-    <div class="work-platforms">
-      <a href="https://www.pixiv.net/novel/show.php?id=21226533" class="work-read-btn" target="_blank">📖 この作品を読む</a>
-    </div>
-    <div class="work-date">掲載 2023/12</div>
-    <button class="share-btn" onclick="shareWork('生意気金持ち男の弱みを握って掃除させる話。', 'namaiki')">📤 シェア</button>
-  </div>
-</div>
-
+    <div id="secGendaiMain"></div>
+    <div id="secGendaiSub"></div>
   </div>
 
   <div class="section-divider"></div>
@@ -410,57 +344,8 @@ function closeMenuOnBg(e) {
 
   <div class="section">
     <div class="section-title">🪽 ファンタジーシリーズ</div>
-
-<div class="sub-heading">🌟 メインシリーズ（世界観共通）</div>
-
-<div class="work-detail" id="renkinjutsushi">
-  <div class="work-detail-cover gc5">
-    <div class="work-detail-labels">
-      <span class="d-label dl-complete">完結</span>
-      <span class="d-label dl-long">長編</span>
-      <span class="d-label dl-r18">R18</span>
-      <span class="d-label dl-volume">全18万文字</span>
-    </div>
-    <div class="work-detail-title">見習い錬金術師の氷と宝石</div>
-  </div>
-  <div class="work-detail-body">
-    <div class="work-coupling">🍒 常に2位の女×常に1位の男</div>
-    <div class="work-tag">#ケンカップル</div>
-    <div class="work-synopsis-full">惚れ薬（失敗作・媚薬）を被ったことで、えっちな気分になったライバルと仮眠室に閉じ込められてしまうところから始まる、喧嘩ばっかりな二人の恋と魔法のお話。初めて書いた長編作品になります。</div>
-    <div class="work-platforms">
-      <a href="https://novel18.syosetu.com/n4212jw/" class="work-read-btn" target="_blank">📖 この作品を読む</a>
-    </div>
-    <div class="work-date">掲載 2025/05</div>
-    <button class="share-btn" onclick="shareWork('見習い錬金術師の氷と宝石', 'renkinjutsushi')">📤 シェア</button>
-  </div>
-</div>
-
-<div class="sub-heading">🌙 別世界のお話</div>
-
-<div class="work-detail" id="maounomusume">
-  <div class="work-detail-cover gc4">
-    <div class="work-detail-labels">
-      <span class="d-label dl-complete">完結</span>
-      <span class="d-label dl-short">短編</span>
-      <span class="d-label dl-all">全年齢</span>
-      <span class="d-label dl-volume">全2.2万文字</span>
-    </div>
-    <div class="work-detail-title">魔王の娘と勇者様</div>
-  </div>
-  <div class="work-detail-body">
-    <div class="work-coupling">🍒 魔王の娘×傲慢な勇者</div>
-    <div class="work-tag">#ロリおに（？）</div>
-    <div class="work-synopsis-full">魔王の娘・エリシアは父親の束縛から逃げる決意をする。傲慢な勇者・アロンは仲間に見限られ、逃げられない砂漠の旅を強いられる。正反対な二人のお話。</div>
-    <div class="work-platforms">
-      <a href="https://ncode.syosetu.com/n7968le/" class="work-read-btn" target="_blank">📖 この作品を読む</a>
-      <div class="work-also-on">こちらにも掲載：</div>
-      <a href="https://www.pixiv.net/novel/show.php?id=26167753" class="platform-link pl-pixiv" target="_blank">🎨 pixiv</a>
-    </div>
-    <div class="work-date">掲載 2025/10</div>
-    <button class="share-btn" onclick="shareWork('魔王の娘と勇者様', 'maounomusume')">📤 シェア</button>
-  </div>
-</div>
-
+    <div id="secFantasyMain"></div>
+    <div id="secFantasySub"></div>
   </div>
 
   <div class="section-divider"></div>
@@ -469,49 +354,8 @@ function closeMenuOnBg(e) {
 
   <div class="section">
     <div class="section-title">🛒 有料販売</div>
-
-<div class="work-detail" id="yuinao-full">
-  <div class="work-detail-cover gc1">
-    <div class="work-detail-labels">
-      <span class="d-label dl-preparing">準備中</span>
-      <span class="d-label dl-mid">中編</span>
-      <span class="d-label dl-r18">R18</span>
-      <span class="d-label dl-volume">全9万文字</span>
-    </div>
-    <div class="work-detail-title">【完全版】ユイちゃん×ナオくん+リリカちゃん</div>
+    <div id="secPaid"></div>
   </div>
-  <div class="work-detail-body">
-    <div class="work-coupling">🍒 優しい攻めちゃん×振り回される片思い君×意地悪な攻めちゃん</div>
-    <div class="work-tag">#仲良し3人組</div>
-    <div class="work-synopsis-full">イカレ幼馴染女によって尻開発済みの男子大学生が、好きな女の子の前で開発済みであることを暴露されるところから始まる仲良し女攻め3P小説。</div>
-    <div class="work-date">2026夏秋頃販売予定</div>
-    <button class="share-btn" onclick="shareWork('【完全版】ユイちゃん×ナオくん+リリカちゃん', 'yuinao-full')">📤 シェア</button>
-  </div>
-</div>
-
-<div class="work-detail" id="yuinao-antholo">
-  <div class="work-detail-cover gc5">
-    <div class="work-detail-labels">
-      <span class="d-label dl-selling">販売中</span>
-      <span class="d-label dl-short">短編</span>
-      <span class="d-label dl-r18">R18</span>
-      <span class="d-label dl-volume">全1.6万文字</span>
-    </div>
-    <div class="work-detail-title">ぼくのかんがえたさいつよの女攻めVol.3<br>『ユイちゃん×ナオくん+リリカちゃん』</div>
-  </div>
-  <div class="work-detail-body">
-    <div class="work-coupling">冒頭1.6万文字先行公開中</div>
-    <div class="work-tag">#アンソロ参加中</div>
-    <div class="work-synopsis-full">優しく攻めるユイちゃんと意地悪に攻めるリリカちゃんによる仲良し女攻め3P小説――の冒頭1.6万文字を掲載中。</div>
-    <div class="work-platforms">
-      <div class="work-also-on">🛒 販売ページへ ⇒</div>
-      <a href="https://www.dlsite.com/girls-touch/work/=/product_id/RJ01579234.html" class="platform-link pl-dlsite" target="_blank">DLsite</a>
-      <a href="https://lovecul.dmm.co.jp/tl/-/detail/=/cid=d_740450/" class="platform-link pl-fanza" target="_blank">FANZA</a>
-    </div>
-    <div class="work-date">掲載 2026/04</div>
-    <button class="share-btn" onclick="shareWork('ぼくのかんがえたさいつよの女攻めVol.3', 'yuinao-antholo')">📤 シェア</button>
-  </div>
-</div>
 
   </div>
 
@@ -524,13 +368,187 @@ function closeMenuOnBg(e) {
 
 
 <script>
+// ============================================================
+//  作品データの読み込みと描画
+//  スプレッドシート →「📤 サイトに反映」→ ここで表示
+// ============================================================
+const WORKS_API_URL = "https://script.google.com/macros/s/AKfycbwcBcuXCJJjp2OBeUq8SJVUkxknUoXEuZWNuaE5Tv5njdNEuU5vgvn26B_XY603u2wd/exec";
+
+// シート → 表示先・小見出しの対応
+const SHEET_MAP = [
+  { sheet: "現代メイン",         target: "secGendaiMain",  heading: "🌟 メインシリーズ（世界観共通）" },
+  { sheet: "現代サブ",           target: "secGendaiSub",   heading: "🌙 別世界のお話" },
+  { sheet: "ファンタジーメイン", target: "secFantasyMain", heading: "🌟 メインシリーズ（世界観共通）" },
+  { sheet: "ファンタジーサブ",   target: "secFantasySub",  heading: "🌙 別世界のお話" },
+  { sheet: "有料販売",           target: "secPaid",        heading: "", paid: true },
+];
+
+// ステータス → ラベル色
+const STATUS_CLASS = { "完結": "dl-complete", "連載中": "dl-ongoing", "販売中": "dl-selling", "準備中": "dl-preparing", "執筆中": "dl-preparing" };
+const LENGTH_CLASS = { "長編": "dl-long", "中編": "dl-mid", "短編": "dl-short" };
+const RATING_CLASS = { "R18": "dl-r18", "全年齢": "dl-all" };
+
+// 旧ページのアンカーIDを引き継ぐ（共有済みリンクやguide.htmlからのリンクを切らさないため）
+const LEGACY_IDS = {
+  "n9554lh": "kusoshunin", "n7872jy": "himaol", "px21226533": "namaiki",
+  "n4212jw": "renkinjutsushi", "n7968le": "maounomusume", "RJ01579234": "yuinao-antholo",
+};
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+// URLから安定したIDを作る（なろうNコード / pixiv ID / DLsite RJコード）
+function workId(work, sheetKey, index) {
+  const url = work["掲載先URL（メイン）"] || "";
+  let key = "";
+  let m = url.match(/syosetu\.com\/(n\w+)\//i);
+  if (m) key = m[1].toLowerCase();
+  if (!key) { m = url.match(/pixiv\.net.*?id=(\d+)/i); if (m) key = "px" + m[1]; }
+  if (!key) { m = url.match(/product_id\/(RJ\d+)/i); if (m) key = m[1]; }
+  if (key && LEGACY_IDS[key]) return LEGACY_IDS[key];
+  const SHEET_KEYS = { "現代メイン": "gendai-main", "現代サブ": "gendai-sub", "ファンタジーメイン": "fantasy-main", "ファンタジーサブ": "fantasy-sub", "有料販売": "paid" };
+  return key || ("w-" + (SHEET_KEYS[sheetKey] || "x") + "-" + (index + 1));
+}
+
+// タイトルからカバーの色（gc1〜gc5）を決める。作品を増やしても既存の色は変わらない
+function coverClass(title) {
+  let h = 0;
+  for (let i = 0; i < title.length; i++) h = (h * 31 + title.charCodeAt(i)) >>> 0;
+  return "gc" + ((h % 5) + 1);
+}
+
+// シェア用の短いタイトル（【〜】が十分長いときはそこまで、『 の前までを使う）
+function shortTitle(title) {
+  const a = title.indexOf("】");
+  if (title.startsWith("【") && a >= 5) return title.slice(0, a + 1);
+  const b = title.indexOf("『");
+  if (b > 0) return title.slice(0, b).trim();
+  return title;
+}
+
+// 掲載先リンクの見た目（色クラスと絵文字）
+function platformParts(nameOrUrl) {
+  const s = (nameOrUrl || "").toLowerCase();
+  if (s.includes("pixiv")) return { cls: "pl-pixiv", emoji: "🎨 " };
+  if (s.includes("dlsite")) return { cls: "pl-dlsite", emoji: "" };
+  if (s.includes("fanza") || s.includes("dmm")) return { cls: "pl-fanza", emoji: "" };
+  if (s.includes("novel18") || s.includes("ムーンライト")) return { cls: "pl-moon", emoji: "🌙 " };
+  if (s.includes("syosetu") || s.includes("なろう")) return { cls: "pl-narou", emoji: "" };
+  return { cls: "", emoji: "" };
+}
+
+function buildCard(work, sheetKey, index, isPaid) {
+  const title = work["タイトル"] || "";
+  const id = workId(work, sheetKey, index);
+
+  // ラベル列
+  let labels = "";
+  if ((work["ピックアップ"] || "").toUpperCase() === "TRUE") labels += '<span class="d-label dl-badge">⭐ 代表作</span>';
+  const st = work["ステータス"] || "";
+  if (st) labels += '<span class="d-label ' + (STATUS_CLASS[st] || "dl-complete") + '">' + esc(st) + "</span>";
+  const len = work["長さ"] || "";
+  if (len) labels += '<span class="d-label ' + (LENGTH_CLASS[len] || "dl-long") + '">' + esc(len) + "</span>";
+  const rate = work["レーティング"] || "";
+  if (rate) labels += '<span class="d-label ' + (RATING_CLASS[rate] || "dl-all") + '">' + esc(rate) + "</span>";
+  if (work["総文字数"]) labels += '<span class="d-label dl-volume">' + esc(work["総文字数"]) + "</span>";
+
+  // カップリング（「×」を含むときだけ🍒を付ける）
+  let coupling = "";
+  const cp = work["カップリング"] || "";
+  if (cp) coupling = '<div class="work-coupling">' + (cp.includes("×") ? "🍒 " : "") + esc(cp) + "</div>";
+
+  const tag = work["ハッシュタグ"] ? '<div class="work-tag">' + esc(work["ハッシュタグ"]) + "</div>" : "";
+  const synopsis = work["あらすじ（作品一覧用）"] || work["あらすじ（トップ用）"] || "";
+
+  // 掲載先リンク
+  const mainUrl = work["掲載先URL（メイン）"] || "";
+  const subUrl = work["掲載先URL（サブ）"] || "";
+  const subName = work["掲載先名（サブ）"] || "掲載先";
+  let platforms = "";
+  if (isPaid && st === "販売中" && mainUrl) {
+    const mp = platformParts(mainUrl);
+    const mainName = mp.cls === "pl-fanza" ? "FANZA" : "DLsite";
+    platforms = '<div class="work-platforms"><div class="work-also-on">🛒 販売ページへ ⇒</div>' +
+      '<a href="' + esc(mainUrl) + '" class="platform-link ' + mp.cls + '" target="_blank">' + esc(mainName) + "</a>";
+    if (subUrl) {
+      const sp = platformParts(subName + subUrl);
+      platforms += '<a href="' + esc(subUrl) + '" class="platform-link ' + sp.cls + '" target="_blank">' + esc(subName) + "</a>";
+    }
+    platforms += "</div>";
+  } else if (mainUrl) {
+    platforms = '<div class="work-platforms"><a href="' + esc(mainUrl) + '" class="work-read-btn" target="_blank">📖 この作品を読む</a>';
+    if (subUrl) {
+      const sp = platformParts(subName + subUrl);
+      platforms += '<div class="work-also-on">こちらにも掲載：</div>' +
+        '<a href="' + esc(subUrl) + '" class="platform-link ' + sp.cls + '" target="_blank">' + sp.emoji + esc(subName) + "</a>";
+    }
+    platforms += "</div>";
+  }
+
+  // イメージソング・あとがき
+  let extras = "";
+  if (work["イメージソングURL"]) extras += '<a href="' + esc(work["イメージソングURL"]) + '" class="extra-link link-playlist" target="_blank">🎵 イメージソング</a>';
+  if (work["あとがきURL"]) extras += '<a href="' + esc(work["あとがきURL"]) + '" class="extra-link link-afterword" target="_blank">📝 あとがき</a>';
+  if (extras) extras = '<div class="work-extras">' + extras + "</div>";
+
+  // 掲載年月（「2026/03」形式なら「掲載」を付け、それ以外の文章はそのまま表示）
+  let date = "";
+  const ym = work["掲載年月"] || "";
+  if (ym) date = '<div class="work-date">' + (/^\d{4}\/\d{1,2}$/.test(ym) ? "掲載 " + esc(ym) : esc(ym)) + "</div>";
+
+  return '<div class="work-detail" id="' + esc(id) + '">' +
+    '<div class="work-detail-cover ' + coverClass(title) + '">' +
+      '<div class="work-detail-labels">' + labels + "</div>" +
+      '<div class="work-detail-title">' + esc(title) + "</div>" +
+    "</div>" +
+    '<div class="work-detail-body">' +
+      coupling + tag +
+      (synopsis ? '<div class="work-synopsis-full">' + esc(synopsis) + "</div>" : "") +
+      platforms + extras + date +
+      '<button class="share-btn" onclick="shareWork(\'' + esc(shortTitle(title)).replace(/'/g, "\\'") + '\', \'' + esc(id) + '\')">📤 シェア</button>' +
+    "</div></div>";
+}
+
+async function loadWorks() {
+  try {
+    const res = await fetch(WORKS_API_URL);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+
+    SHEET_MAP.forEach(({ sheet, target, heading, paid }) => {
+      const works = (data.sheets && data.sheets[sheet]) || [];
+      const el = document.getElementById(target);
+      if (works.length === 0) { el.innerHTML = ""; return; }
+      let html = heading ? '<div class="sub-heading">' + heading + "</div>" : "";
+      works.forEach((w, i) => { html += buildCard(w, sheet, i, !!paid); });
+      el.innerHTML = html;
+    });
+
+    document.getElementById("worksLoading").style.display = "none";
+    document.getElementById("worksContent").style.display = "";
+
+    // #アンカー付きでアクセスされた場合、描画後にスクロール
+    if (location.hash) {
+      const t = document.getElementById(location.hash.slice(1));
+      if (t) t.scrollIntoView();
+    }
+  } catch (e) {
+    document.getElementById("worksLoading").style.display = "none";
+    document.getElementById("worksError").style.display = "";
+  }
+}
+loadWorks();
+</script>
+
+<script>
 async function shareWork(title, id) {
   const url = 'https://ygr-ngrr.github.io/works-list.html#' + id;
   if (navigator.share) {
     try {
       await navigator.share({
         title: title + ' — 夜霧流るる',
-        text: title + ' — 夜霧流るる\n' + url,
+        text: title + ' を読んでみて！',
         url: url
       });
     } catch (err) {}
