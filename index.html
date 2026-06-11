@@ -954,29 +954,9 @@ function closeMenuOnBg(e) {
 
   <div class="section" id="works">
     <div class="section-title"><span>📖</span> ピックアップ</div>
-    <div class="works-grid fade-in">
-
-  <div class="work-card">
-    <div class="work-cover work-cover-1">
-      <div class="work-cover-pattern"></div>
-      <div class="work-cover-labels">
-        <span class="cover-badge">⭐ 代表作</span>
-        <span class="cover-status cs-complete">完結</span>
-        <span class="cover-status" style="background:rgba(255,100,100,0.8);color:white;">R18</span>
-        <span class="cover-status cs-genre">現代</span>
-        <span class="cover-status cs-volume">全30万文字</span>
-      </div>
-      <div class="work-cover-title">【クソ主任に鎖。】SMマチアプでマゾ男を呼び出したら、大嫌いなパワハラ上司が現れた話</div>
+    <div class="works-grid fade-in" id="pickupContainer">
+      <div style="text-align:center; padding:32px 0; color:#8E849E; font-size:13px; grid-column:1/-1;">作品を読み込んでいます…</div>
     </div>
-    <div class="work-body">
-      <div class="work-synopsis">部下女と上司男の主従逆転オフィスラブ。<br>「指示されたことはすぐにやれ。藍原主任がいつも言っていることですよね？　さっさと脱げよ」</div>
-      <div class="work-links">
-        <a href="https://novel18.syosetu.com/n9554lh/" class="work-link link-moon" target="_blank">🌙 読む（ムーンライトノベルズ）</a>
-      </div>
-    </div>
-  </div>
-
-</div>
 <div class="see-all fade-in">
   <a href="works-list.html" class="see-all-btn">📚 すべての作品を見る →</a>
   <div class="see-all-hint">長編・短編・有料販売の全作品はこちら</div>
@@ -1205,6 +1185,96 @@ function esc(str) {
     container.innerHTML = '<div style="text-align:center;padding:24px;color:#8E849E;font-size:13px;">ポストの読み込みに失敗しました</div>';
   }
 })();
+</script>
+
+
+<script>
+// ============================================================
+//  ピックアップ作品の読み込み（スプレッドシート連動・最大2作品）
+//  作品シートで「ピックアップ」をTRUEにした作品が表示されます
+//  （3作品以上TRUEの場合は、シート順→列順で先の2作品まで）
+// ============================================================
+const WORKS_API_URL = "https://script.google.com/macros/s/AKfycbwcBcuXCJJjp2OBeUq8SJVUkxknUoXEuZWNuaE5Tv5njdNEuU5vgvn26B_XY603u2wd/exec";
+const PICKUP_MAX = 2;
+
+const PICKUP_SHEETS = [
+  { sheet: "現代メイン", genre: "現代" }, { sheet: "現代サブ", genre: "現代" },
+  { sheet: "ファンタジーメイン", genre: "ファンタジー" }, { sheet: "ファンタジーサブ", genre: "ファンタジー" },
+  { sheet: "有料販売", genre: "有料" },
+];
+const PICKUP_STATUS = { "完結": "cs-complete", "連載中": "cs-ongoing", "販売中": "cs-complete", "準備中": "cs-volume", "執筆中": "cs-volume" };
+
+function pickupEsc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+// 掲載先URLからリンクボタンの文言と色を決める
+function pickupLink(url) {
+  const u = (url || "").toLowerCase();
+  if (!u) return "";
+  let cls = "link-moon", label = "🌙 読む（ムーンライトノベルズ）";
+  if (u.includes("pixiv")) { cls = "link-pixiv"; label = "🎨 読む（pixiv）"; }
+  else if (u.includes("dlsite")) { cls = "link-dlsite"; label = "🛒 販売サイトはこちら → DLsite"; }
+  else if (u.includes("dmm") || u.includes("lovecul")) { cls = "link-dlsite"; label = "🛒 販売サイトはこちら → FANZA"; }
+  else if (u.includes("ncode.syosetu")) { cls = "link-moon"; label = "📖 読む（小説家になろう）"; }
+  return '<a href="' + pickupEsc(url) + '" class="work-link ' + cls + '" target="_blank">' + label + "</a>";
+}
+
+function pickupCard(work, genre, index) {
+  const title = work["タイトル"] || "";
+  let h = 0;
+  for (let i = 0; i < title.length; i++) h = (h * 31 + title.charCodeAt(i)) >>> 0;
+  const cover = "work-cover-" + ((h % 3) + 1);
+
+  let labels = '<span class="cover-badge">⭐ 代表作</span>';
+  const st = work["ステータス"] || "";
+  if (st) labels += '<span class="cover-status ' + (PICKUP_STATUS[st] || "cs-complete") + '">' + pickupEsc(st) + "</span>";
+  const rate = work["レーティング"] || "";
+  if (rate === "R18") labels += '<span class="cover-status" style="background:rgba(255,100,100,0.8);color:white;">R18</span>';
+  else if (rate) labels += '<span class="cover-status" style="background:rgba(255,255,255,0.85);color:#00838F;">' + pickupEsc(rate) + "</span>";
+  labels += '<span class="cover-status cs-genre">' + pickupEsc(genre) + "</span>";
+  if (work["総文字数"]) labels += '<span class="cover-status cs-volume">' + pickupEsc(work["総文字数"]) + "</span>";
+
+  const synopsis = work["あらすじ（トップ用）"] || work["あらすじ（作品一覧用）"] || "";
+  const link = pickupLink(work["掲載先URL（メイン）"]);
+
+  return '<div class="work-card">' +
+    '<div class="work-cover ' + cover + '">' +
+      '<div class="work-cover-pattern"></div>' +
+      '<div class="work-cover-labels">' + labels + "</div>" +
+      '<div class="work-cover-title">' + pickupEsc(title) + "</div>" +
+    "</div>" +
+    '<div class="work-body">' +
+      (synopsis ? '<div class="work-synopsis">' + pickupEsc(synopsis) + "</div>" : "") +
+      (link ? '<div class="work-links">' + link + "</div>" : "") +
+    "</div></div>";
+}
+
+async function loadPickup() {
+  const el = document.getElementById("pickupContainer");
+  try {
+    const res = await fetch(WORKS_API_URL);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+
+    const picked = [];
+    PICKUP_SHEETS.forEach(({ sheet, genre }) => {
+      ((data.sheets && data.sheets[sheet]) || []).forEach(w => {
+        if ((w["ピックアップ"] || "").toUpperCase() === "TRUE") picked.push({ w, genre });
+      });
+    });
+
+    const top = picked.slice(0, PICKUP_MAX);
+    if (top.length === 0) {
+      el.innerHTML = '<div style="text-align:center; padding:32px 0; color:#8E849E; font-size:13px; grid-column:1/-1;">準備中です</div>';
+      return;
+    }
+    el.innerHTML = top.map((p, i) => pickupCard(p.w, p.genre, i)).join("");
+  } catch (e) {
+    el.innerHTML = '<div style="text-align:center; padding:32px 0; color:#8E849E; font-size:13px; grid-column:1/-1;">作品を読み込めませんでした。<a href="works-list.html" style="color:#A8C4F0;">作品一覧はこちら</a></div>';
+  }
+}
+loadPickup();
 </script>
 
 </body>
