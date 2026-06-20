@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>🌙 女攻めWebオンリー — 夜霧流るる</title>
+<!-- OGP -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="女攻めWebオンリー 参加お品書き — 夜霧流るる">
+<meta property="og:description" content="女攻めWebオンリー参加作品まとめ。『クソ主任に鎖。』『ユイ×ナオ＋リリカ』── R-18・女性優位／女攻め。">
+<meta property="og:site_name" content="夜霧流るる">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F6FF;
+    --card: #FFFFFF;
+    --accent: #A8C4F0;
+    --accent2: #E8A0BF;
+    --accent3: #C4A8E0;
+    --text: #4A4458;
+    --text-light: #8E849E;
+    --text-dark: #2E2440;
+    --border: #E8E0F0;
+    --shadow: 0 2px 20px rgba(74, 68, 88, 0.08);
+    --shadow-hover: 0 8px 30px rgba(74, 68, 88, 0.15);
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background-color: #F8F6FF; color-scheme: light only; }
+  body { font-family: 'Zen Maru Gothic', 'Klee One', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+
+  /* ===== HEADER ===== */
+  .page-header { text-align: center; padding: 52px 20px 44px; background: linear-gradient(135deg, #C8DDFB 0%, #E8C0D8 40%, #D0C0E8 100%); position: relative; overflow: hidden; }
+  .header-event-label {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+    color: var(--text-dark); background: rgba(255,255,255,0.7); backdrop-filter: blur(4px);
+    padding: 4px 14px; border-radius: 100px; margin-bottom: 12px;
+  }
+  .page-header h1 { font-family: 'Klee One', serif; font-size: clamp(24px, 6vw, 34px); font-weight: 600; color: var(--text-dark); margin-bottom: 8px; line-height: 1.3; }
+  .page-header .circle { margin-top: 4px; }
+  .circle-label { display: inline-block; font-size: 11px; letter-spacing: 0.18em; color: var(--text-dark); opacity: 0.65; margin-bottom: 4px; }
+  .circle-name { font-family: 'Klee One', serif; font-weight: 600; font-size: clamp(22px, 6vw, 30px); color: var(--text-dark); line-height: 1.2; letter-spacing: 0.04em; }
+  .circle-pen { display: block; font-size: 12px; color: var(--text-dark); opacity: 0.7; margin-top: 4px; }
+  .header-wave { position: absolute; bottom: -2px; left: 0; width: 100%; height: 30px; background: var(--bg); clip-path: ellipse(58% 100% at 50% 100%); }
+
+  /* ===== CONTAINER ===== */
+  .container { max-width: 680px; margin: 0 auto; padding: 24px 16px 50px; }
+
+  .intro {
+    background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 20px 22px; margin-bottom: 32px; text-align: center;
+  }
+  .intro .lead { font-family: 'Klee One', serif; font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+  .intro p { font-size: 13px; color: var(--text); line-height: 1.85; }
+  .intro .genres { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+  .genre-chip { font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 100px; }
+  .gc-pink { background: #FCE4EC; color: #C2185B; }
+  .gc-purple { background: #EDE2F6; color: #7B3FA0; }
+  .gc-blue { background: #E3EEFB; color: #2C5FA8; }
+
+  /* ===== WORK CARD ===== */
+  .works-grid { display: flex; flex-direction: column; gap: 24px; }
+  .work { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: box-shadow 0.3s; }
+  .work:hover { box-shadow: var(--shadow-hover); }
+  .work-cover { padding: 22px 22px 16px; min-height: 96px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .cover1 { background: linear-gradient(135deg, #A8C4F0 0%, #D8A0C8 52%, #C0A8E0 100%); }
+  .cover2 { background: linear-gradient(135deg, #E0B0C8 0%, #C0A8E0 50%, #A8D0F0 100%); }
+  .work-no { font-family: 'Klee One', serif; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); text-shadow: 0 1px 6px rgba(0,0,0,0.25); letter-spacing: 0.1em; margin-bottom: 6px; }
+  .work-labels { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 9px; }
+  .d-label { font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 100px; backdrop-filter: blur(4px); }
+  .dl-r18 { background: rgba(232,120,143,0.92); color: #fff; }
+  .dl-josei { background: rgba(255,255,255,0.85); color: #AD1457; }
+  .dl-onnazeme { background: rgba(255,255,255,0.85); color: #7B1FA2; }
+  .dl-len { background: rgba(255,255,255,0.7); color: #546E7A; }
+  .dl-complete { background: rgba(255,255,255,0.85); color: #2E7D32; }
+  .dl-free { background: rgba(255,235,150,0.92); color: #6D4C00; }
+  .dl-trial { background: rgba(255,255,255,0.85); color: #1565C0; }
+  .work-title { font-family: 'Klee One', serif; font-size: clamp(17px, 4.4vw, 20px); font-weight: 700; color: #fff; text-shadow: 0 1px 10px rgba(0,0,0,0.4); line-height: 1.4; }
+
+  .work-body { padding: 16px 22px 20px; }
+  .work-pair {
+    display: flex; align-items: center; gap: 7px; flex-wrap: wrap; row-gap: 4px;
+    font-family: 'Klee One', serif; font-weight: 600; font-size: 14px; margin-bottom: 4px;
+  }
+  .work-pair .a1 { color: var(--accent2); }
+  .work-pair .a3 { color: var(--accent3); }
+  .work-pair .op { opacity: 0.55; }
+  .work-pair-sub { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; margin-bottom: 12px; }
+  .work-synopsis { font-size: 13.5px; color: var(--text); line-height: 1.85; margin-bottom: 16px; padding: 12px 15px; background: #FAF8FF; border-radius: 10px; border: 1px solid var(--border); }
+
+  .work-read-btn {
+    display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+    padding: 11px 26px; border-radius: 100px; font-size: 14px; font-weight: 700; color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    box-shadow: 0 3px 12px rgba(168,196,240,0.4); transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .work-read-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 18px rgba(168,196,240,0.5); }
+  .work-also { font-size: 11px; color: var(--text-light); margin: 12px 0 5px; }
+  .platform-link { display: inline-block; text-decoration: none; font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 100px; margin-right: 5px; transition: all 0.2s; }
+  .pl-moon { background: #FCE4EC; color: #C62828; }
+  .pl-moon:hover { background: #C62828; color: #fff; }
+  .pl-pixiv { background: #E3F2FD; color: #1565C0; }
+  .pl-pixiv:hover { background: #1565C0; color: #fff; }
+  .pl-dlsite { background: #FFF3E0; color: #E65100; }
+  .pl-dlsite:hover { background: #E65100; color: #fff; }
+
+  .work-meta { font-size: 11px; color: var(--text-light); margin-top: 12px; letter-spacing: 0.04em; }
+  .work-news {
+    margin-top: 14px; display: flex; align-items: flex-start; gap: 9px;
+    background: linear-gradient(135deg, #FFF6E5, #FDEDE0); border: 1px solid #F3DEC8;
+    border-radius: 10px; padding: 11px 14px;
+  }
+  .work-news .tag { flex: 0 0 auto; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: #B26A00; border: 1.5px solid #E0B070; border-radius: 6px; padding: 2px 7px; margin-top: 2px; }
+  .work-news .txt { font-size: 12px; color: #8A5A1A; line-height: 1.7; font-weight: 500; }
+
+  /* placeholder link marker */
+  [data-todo] { position: relative; }
+  [data-todo]::after { content: "要URL"; position: absolute; top: -7px; right: -6px; font-size: 8px; font-weight: 700; color: #fff; background: #E8788F; padding: 1px 5px; border-radius: 100px; opacity: 0.9; }
+
+  footer { text-align: center; padding: 34px 20px; font-size: 12px; color: var(--text-light); border-top: 1px solid var(--border); }
+  footer .back { color: var(--accent2); text-decoration: none; font-weight: 700; }
+  footer .copy { margin-top: 10px; opacity: 0.8; }
+
+  /* ===== PC / TABLET : two works side by side ===== */
+  @media (min-width: 820px) {
+    .container { max-width: 900px; }
+    .works-grid { flex-direction: row; align-items: stretch; gap: 28px; }
+    .works-grid .work { flex: 1 1 0; display: flex; flex-direction: column; }
+    .works-grid .work .work-body { flex: 1 1 auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="page-header">
+  <span class="header-event-label">🌙 女攻めＷｅｂオンリー</span>
+  <div class="circle">
+    <span class="circle-label">参加サークル</span>
+    <div class="circle-name">🪐夜霧流るる</div>
+    <span class="circle-pen">きりしま</span>
+  </div>
+  <div class="header-wave"></div>
+</header>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="lead">夜霧流るるのページにお越しいただきありがとうございます🍒</div>
+    <p>女性優位長編小説・女攻め3P小説の2作品をご用意しました。<br>気になる作品からどうぞ</p>
+    <div class="genres">
+      <span class="genre-chip gc-pink">女性優位</span>
+      <span class="genre-chip gc-purple">女攻め</span>
+      <span class="genre-chip gc-blue">R-18</span>
+    </div>
+  </div>
+
+  <!-- WORK 1 -->
+  <div class="works-grid">
+  <article class="work">
+    <div class="work-cover cover1">
+      <div class="work-no">FIRST</div>
+      <div class="work-labels">
+        <span class="d-label dl-r18">R-18</span>
+        <span class="d-label dl-josei">女性優位</span>
+        <span class="d-label dl-len">長編</span>
+        <span class="d-label dl-complete">完結済み</span>
+        <span class="d-label dl-free">無料</span>
+      </div>
+      <div class="work-title">【クソ主任に鎖。】ＳＭマチアプでマゾ男を呼び出したらパワハラ上司が現れた！</div>
+    </div>
+    <div class="work-body">
+      <div class="work-pair">
+        <span class="a1">ストレスＯＬ</span>
+        <span class="op">×</span>
+        <span class="a3">訳アリパワハラ上司</span>
+      </div>
+      <div class="work-pair-sub">部下女・♀ × 上司男・♂ ／ じれじれオフィスラブ・精神的逆転無し</div>
+      <div class="work-synopsis">ＳＭマチアプでマゾ男を呼び出したら、パワハラ上司が現れた！<br>主従逆転🌸ちょっと変わった現代オフィスラブ</div>
+
+      <a class="work-read-btn" href="https://novel18.syosetu.com/n9554lh/" target="_blank" rel="noopener">📖 この作品を読む</a>
+      <div class="work-meta">約30万文字 ／ 完結済み ／ 無料で読めます</div>
+    </div>
+  </article>
+
+  <!-- WORK 2 -->
+  <article class="work">
+    <div class="work-cover cover2">
+      <div class="work-no">SECOND</div>
+      <div class="work-labels">
+        <span class="d-label dl-r18">R-18</span>
+        <span class="d-label dl-onnazeme">女攻め・3P</span>
+        <span class="d-label dl-trial">試し読み</span>
+      </div>
+      <div class="work-title">ユイちゃん×ナオ君＋リリカちゃん</div>
+    </div>
+    <div class="work-body">
+      <div class="work-pair">
+        <span class="a1">恋愛不慣れちゃん</span>
+        <span class="op">×</span>
+        <span class="a3">振り回され男子</span>
+        <span class="op">＋</span>
+        <span class="a1">意地悪幼馴染ちゃん</span>
+      </div>
+      <div class="work-pair-sub">攻め女 × 受け男 ＋ 攻め女</div>
+      <div class="work-synopsis">優しい攻め女と意地悪な攻め女が、男子大学生と3Pしちゃう！<br>なかよし女攻め３人プレイラブ🐕</div>
+
+      <a class="work-read-btn" href="https://privatter.me/page/6a35db399cedd" target="_blank" rel="noopener">📖 試し読みする</a>
+      <div class="work-meta">約1.6万文字 ／ 試し読み公開中</div>
+      <div class="work-news">
+        <span class="tag">NEWS</span>
+        <span class="txt">女攻め3P小説の完全版（全8万文字）は、9月にDLsiteにて販売予定です🛒</span>
+      </div>
+    </div>
+  </article>
+
+  </div>
+
+</div>
+
+<footer>
+  <a class="back" href="index.html">作者個人サイトにいく（男攻め作品もあるので注意）</a>
+  <div class="copy">© 2026 夜霧流るる ／ きりしま</div>
+</footer>
+
+</body>
+</html>
