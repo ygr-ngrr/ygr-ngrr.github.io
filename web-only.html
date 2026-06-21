@@ -124,6 +124,21 @@
   [data-todo] { position: relative; }
   [data-todo]::after { content: "要URL"; position: absolute; top: -7px; right: -6px; font-size: 8px; font-weight: 700; color: #fff; background: #E8788F; padding: 1px 5px; border-radius: 100px; opacity: 0.9; }
 
+  /* ===== NEWS NOTICE ===== */
+  .notice-wrap { max-width: 680px; margin: 0 auto; padding: 0 16px 8px; }
+  .notice { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 22px 22px; text-align: center; }
+  .notice-title { font-family: 'Klee One', serif; font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 14px; }
+  .notice-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .notice-link { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; padding: 13px 22px; border-radius: 16px; transition: transform 0.25s, box-shadow 0.25s; min-width: 258px; box-shadow: 0 3px 12px rgba(74,68,88,0.08); }
+  .nl-main { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+  .notice-link .nl-no { font-family: 'Klee One', serif; opacity: 0.7; }
+  .nl-sub { font-size: 11px; font-weight: 500; opacity: 0.82; line-height: 1.5; }
+  .nl-hint { display: inline-block; margin-top: 1px; font-size: 11px; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+  .nl-pixiv { background: #E3F2FD; color: #1565C0; }
+  .nl-pixiv:hover { background: #1565C0; color: #fff; transform: translateY(-2px); box-shadow: 0 5px 16px rgba(21,101,192,0.3); }
+  .nl-line { background: #E4F7E9; color: #2A9D4E; }
+  .nl-line:hover { background: #2A9D4E; color: #fff; transform: translateY(-2px); box-shadow: 0 5px 16px rgba(42,157,78,0.3); }
+
   footer { text-align: center; padding: 34px 20px; font-size: 12px; color: var(--text-light); border-top: 1px solid var(--border); }
   footer .back { color: var(--accent2); text-decoration: none; font-weight: 700; }
   footer .copy { margin-top: 10px; opacity: 0.8; }
@@ -229,6 +244,24 @@
 
   </div>
 
+</div>
+
+<!-- ===== NEWS NOTICE ===== -->
+<div class="notice-wrap">
+  <div class="notice">
+    <div class="notice-title">📢 今後の新作のお知らせは下記から</div>
+    <div class="notice-links">
+      <a class="notice-link nl-pixiv" href="https://www.pixiv.net/users/20023895" target="_blank" rel="noopener">
+        <span class="nl-main"><span class="nl-no">①</span> Pixivで試し読み</span>
+        <span class="nl-sub">新作が出るたびに試し読みを掲載しています</span>
+      </a>
+      <a class="notice-link nl-line" href="https://ygr-ngrr.github.io/line.html" target="_blank" rel="noopener">
+        <span class="nl-main"><span class="nl-no">②</span> LINEでお知らせ</span>
+        <span class="nl-sub">新作が出るたびに通知が届きます（年に数回）</span>
+        <span class="nl-hint">くわしくはこちら ▶</span>
+      </a>
+    </div>
+  </div>
 </div>
 
 <footer>
